@@ -290,6 +290,23 @@
     .project-card {
       overflow: hidden;
       transition: 0.25s;
+      position: relative;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(120deg, transparent, rgba(124,58,237,0.12), transparent);
+      opacity: 0;
+      transition: 0.3s;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
     }
 
     .project-image {
@@ -305,6 +322,8 @@
       font-size: 20px;
       letter-spacing: 0.4px;
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 0;
     }
 
     .project-image.real-image {
@@ -326,6 +345,17 @@
 
     .project-content {
       padding: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .featured-label {
+      color: var(--accent-hover);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
     .badges,
@@ -380,6 +410,10 @@
       .projects-grid,
       .skills-grid {
         grid-template-columns: 1fr;
+      }
+
+      .projects-grid .featured-project {
+        grid-column: span 1 !important;
       }
 
       .nav-inner {
@@ -532,11 +566,13 @@
       </p>
 
       <div class="projects-grid">
-        <div class="project-card">
+
+        <div class="project-card featured-project" style="grid-column: span 2;">
           <div class="project-image real-image">
             <img src="https://raw.githubusercontent.com/MorgilloEdoardo/instacart-business-intelligence/main/images/01_executive_overview.png" alt="Instacart Dashboard">
           </div>
           <div class="project-content">
+            <p class="featured-label">Featured Project</p>
             <h3>Instacart Analytics Project</h3>
             <p>
               End-to-end analysis of transactional data focused on customer behavior, product performance,
@@ -576,6 +612,7 @@
             <a class="btn btn-primary" href="https://github.com/MorgilloEdoardo/financial-transactions-business-intelligence" target="_blank">View Project</a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
