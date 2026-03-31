@@ -1,192 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edoardo Morgillo | Data Analyst</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edoardo Morgillo | Data Analyst</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-<style>
-body {
-  margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background:#020617;
-  color:#e2e8f0;
-  scroll-behavior:smooth;
-}
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #060b16;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
 
-/* NAVBAR */
-nav {
-  position:fixed;
-  width:100%;
-  background:#020617;
-  padding:15px;
-  text-align:center;
-  z-index:1000;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-nav a {
-  color:#22c55e;
-  margin:0 20px;
-  text-decoration:none;
-  font-weight:600;
-}
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
 
-/* HERO */
-.hero {
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  background:linear-gradient(135deg,#020617,#0f172a);
-}
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(6, 11, 22, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
 
-.hero h1 {
-  font-size:50px;
-  color:#22c55e;
-}
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
 
-.hero p {
-  font-size:20px;
-}
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
 
-/* SECTION */
-section {
-  padding:80px 20px;
-  max-width:1000px;
-  margin:auto;
-}
+    .logo span {
+      color: #22c55e;
+    }
 
-h2 {
-  color:#22c55e;
-  margin-bottom:20px;
-}
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
 
-/* CARDS */
-.card {
-  background:#0f172a;
-  padding:25px;
-  border-radius:15px;
-  margin-bottom:20px;
-  transition:0.3s;
-}
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 15px;
+      transition: 0.25s;
+    }
 
-.card:hover {
-  transform:translateY(-5px);
-}
+    .nav-links a:hover {
+      color: #22c55e;
+    }
 
-/* BADGES */
-.badge {
-  display:inline-block;
-  padding:6px 12px;
-  margin:5px;
-  border-radius:20px;
-  font-size:12px;
-  border:1px solid #22c55e;
-  color:#22c55e;
-}
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,0.16), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,0.14), transparent 24%),
+        linear-gradient(180deg, #060b16 0%, #0b1220 100%);
+      padding-top: 90px;
+    }
 
-/* BUTTON */
-.btn {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 18px;
-  background:#22c55e;
-  color:#020617;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
 
-/* FOOTER */
-footer {
-  text-align:center;
-  padding:30px;
-  color:#64748b;
-}
-</style>
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(34,197,94,0.35);
+      border-radius: 999px;
+      color: #22c55e;
+      font-size: 13px;
+      margin-bottom: 22px;
+      background: rgba(34,197,94,0.08);
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 74px);
+      line-height: 1.05;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: #22c55e;
+    }
+
+    .hero p {
+      max-width: 640px;
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: #22c55e;
+      color: #06111a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(34,197,94,0.20);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.08);
+      color: #e5e7eb;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(34,197,94,0.4);
+      color: #22c55e;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+    }
+
+    .mock-top {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .mock-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #334155;
+    }
+
+    .stat-box {
+      background: #0b1322;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .stat-box h4 {
+      color: #22c55e;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .stat-box p {
+      color: #e2e8f0;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    section {
+      padding: 110px 0 20px;
+    }
+
+    .section-title {
+      font-size: 34px;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .section-title span {
+      color: #22c55e;
+    }
+
+    .section-subtitle {
+      color: #94a3b8;
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .glass-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 28px;
+      transition: 0.25s;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(34,197,94,0.22);
+    }
+
+    .glass-card h3 {
+      margin-bottom: 12px;
+      font-size: 22px;
+      color: #ffffff;
+    }
+
+    .glass-card p {
+      color: #94a3b8;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .project-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: 0.25s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(34,197,94,0.25);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+    }
+
+    .project-image {
+      height: 220px;
+      background:
+        linear-gradient(135deg, rgba(34,197,94,0.22), rgba(59,130,246,0.18)),
+        #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #dbeafe;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.4px;
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-content h3 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .project-content p {
+      color: #94a3b8;
+      margin-bottom: 18px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      font-size: 12px;
+      color: #22c55e;
+      border: 1px solid rgba(34,197,94,0.35);
+      background: rgba(34,197,94,0.08);
+      border-radius: 999px;
+      padding: 8px 12px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .skills-card h3,
+    .contact-card h3 {
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-card p {
+      color: #94a3b8;
+      margin-bottom: 14px;
+    }
+
+    .contact-links a {
+      display: block;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+      transition: 0.2s;
+    }
+
+    .contact-links a:hover {
+      color: #22c55e;
+    }
+
+    footer {
+      padding: 70px 0 30px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .projects-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .hero {
+        padding-top: 130px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#projects">Projects</a>
-<a href="#skills">Skills</a>
-<a href="#contact">Contact</a>
-</nav>
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">Edoardo<span>.</span></div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<!-- HOME -->
-<div class="hero" id="home">
-<h1>Edoardo Morgillo</h1>
-<p>Data Analyst</p>
-<p>Turning Data into Business Insights</p>
-</div>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Data Analyst Portfolio</div>
+        <h1>Hi, I'm <span>Edoardo Morgillo</span></h1>
+        <p>
+          I turn data into clear business insights through dashboards, analysis,
+          storytelling and end-to-end BI projects.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
 
-<!-- ABOUT -->
-<section id="about">
-<h2>About Me</h2>
-<p>
-I am a Data Analyst focused on transforming data into actionable business insights.
-I work with Excel, SQL, Python and Power BI to build end-to-end analytics projects.
-</p>
-</section>
+      <div class="hero-card">
+        <div class="mock-top">
+          <div class="mock-dot"></div>
+          <div class="mock-dot"></div>
+          <div class="mock-dot"></div>
+        </div>
+        <div class="stat-box">
+          <h4>Main Focus</h4>
+          <p>Business Intelligence, dashboards and analytical storytelling.</p>
+        </div>
+        <div class="stat-box">
+          <h4>Core Stack</h4>
+          <p>Excel, SQL, Python, Power BI, Looker Studio.</p>
+        </div>
+        <div class="stat-box">
+          <h4>Approach</h4>
+          <p>Clean analysis, business impact and clear communication.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-<h2>Projects</h2>
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About <span>Me</span></h2>
+      <p class="section-subtitle">
+        A short introduction about who I am and how I work with data.
+      </p>
 
-<div class="card">
-<h3>Instacart Analytics Dashboard</h3>
-<p>Customer behavior, product performance and basket analysis.</p>
+      <div class="about-grid">
+        <div class="glass-card">
+          <h3>Who I Am</h3>
+          <p>
+            I am a Data Analyst focused on transforming raw data into actionable
+            insights. I enjoy building projects that connect data cleaning,
+            analysis and dashboard design into one clear business story.
+          </p>
+        </div>
 
-<div>
-<span class="badge">Python</span>
-<span class="badge">SQL</span>
-<span class="badge">Power BI</span>
-</div>
+        <div class="glass-card">
+          <h3>How I Work</h3>
+          <p>
+            My approach is practical and business-oriented: I focus on useful KPIs,
+            clean visuals, and insights that help support decisions rather than
+            just showing numbers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<a class="btn" href="https://github.com/MorgilloEdoardo" target="_blank">View Project</a>
-</div>
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+      <p class="section-subtitle">
+        Selected projects where I applied analytics, dashboarding and business thinking.
+      </p>
 
-<div class="card">
-<h3>Financial Transactions Dashboard</h3>
-<p>Revenue trends, transaction performance and financial insights.</p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">Instacart Dashboard</div>
+          <div class="project-content">
+            <h3>Instacart Analytics Dashboard</h3>
+            <p>
+              End-to-end BI project focused on customer behavior, basket analysis,
+              product performance and purchasing patterns.
+            </p>
+            <div class="badges">
+              <span class="badge">Python</span>
+              <span class="badge">SQL</span>
+              <span class="badge">Power BI</span>
+              <span class="badge">Excel</span>
+            </div>
+            <a class="btn btn-primary" href="https://github.com/MorgilloEdoardo/instacart-business-intelligence" target="_blank">View Project</a>
+          </div>
+        </div>
 
-<div>
-<span class="badge">Power BI</span>
-<span class="badge">DAX</span>
-</div>
+        <div class="project-card">
+          <div class="project-image">Financial Dashboard</div>
+          <div class="project-content">
+            <h3>Financial Transactions Dashboard</h3>
+            <p>
+              Dashboard project focused on revenue trends, transaction performance,
+              customer activity and financial insights.
+            </p>
+            <div class="badges">
+              <span class="badge">Power BI</span>
+              <span class="badge">DAX</span>
+              <span class="badge">Excel</span>
+            </div>
+            <a class="btn btn-primary" href="https://github.com/MorgilloEdoardo/financial-transactions-business-intelligence" target="_blank">View Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<a class="btn" href="https://github.com/MorgilloEdoardo" target="_blank">View Project</a>
-</div>
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">My <span>Skills</span></h2>
+      <p class="section-subtitle">
+        Main tools and capabilities I use across my projects.
+      </p>
 
-</section>
+      <div class="skills-grid">
+        <div class="glass-card skills-card">
+          <h3>Tools</h3>
+          <div class="skills-list">
+            <span class="badge">Excel</span>
+            <span class="badge">SQL</span>
+            <span class="badge">Python</span>
+            <span class="badge">Power BI</span>
+            <span class="badge">Looker Studio</span>
+            <span class="badge">GitHub</span>
+          </div>
+        </div>
 
-<!-- SKILLS -->
-<section id="skills">
-<h2>Skills</h2>
+        <div class="glass-card skills-card">
+          <h3>Strengths</h3>
+          <div class="skills-list">
+            <span class="badge">Data Cleaning</span>
+            <span class="badge">Dashboard Design</span>
+            <span class="badge">Data Visualization</span>
+            <span class="badge">Business Analysis</span>
+            <span class="badge">Storytelling</span>
+            <span class="badge">KPI Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<span class="badge">Excel</span>
-<span class="badge">SQL</span>
-<span class="badge">Python</span>
-<span class="badge">Power BI</span>
-<span class="badge">Looker Studio</span>
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Get in <span>Touch</span></h2>
+      <p class="section-subtitle">
+        Feel free to connect with me for opportunities, projects or collaborations.
+      </p>
 
-</section>
+      <div class="glass-card contact-card">
+        <h3>Contact</h3>
+        <p>You can find me here:</p>
+        <div class="contact-links">
+          <a href="https://github.com/MorgilloEdoardo" target="_blank">GitHub — MorgilloEdoardo</a>
+          <a href="https://www.linkedin.com/in/edoardo-morgillo-b5bb6a33b/" target="_blank">LinkedIn — Edoardo Morgillo</a>
+          <a href="mailto:edoardomorgillo@icloud.com">Email — edoardomorgillo@icloud.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-<h2>Contact</h2>
-<p>GitHub: <a href="https://github.com/MorgilloEdoardo" target="_blank">MorgilloEdoardo</a></p>
-<p>LinkedIn: <a href="#">LinkedIn</a></p>
-</section>
-
-<footer>
-<p>© 2026 Edoardo Morgillo</p>
-</footer>
+  <footer>
+    © 2026 Edoardo Morgillo — Data Analyst Portfolio
+  </footer>
 
 </body>
 </html>
