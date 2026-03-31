@@ -12,10 +12,28 @@
       scroll-behavior: smooth;
     }
 
+    :root {
+      --bg: #04050a;
+      --bg-secondary: #0a0d14;
+      --card: rgba(255, 255, 255, 0.04);
+      --card-strong: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f5f7fb;
+      --text-soft: #9aa3b2;
+      --accent: #8b5cf6;
+      --accent-soft: rgba(139, 92, 246, 0.12);
+      --accent-hover: #a78bfa;
+      --badge-bg: rgba(255, 255, 255, 0.05);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
     body {
       font-family: Inter, Arial, sans-serif;
-      background: #060b16;
-      color: #e5e7eb;
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 246, 0.08), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.06), transparent 20%),
+        linear-gradient(180deg, #030407 0%, #070a11 100%);
+      color: var(--text);
       line-height: 1.6;
     }
 
@@ -34,9 +52,9 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(6, 11, 22, 0.75);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(4, 5, 10, 0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .nav-inner {
@@ -50,11 +68,11 @@
       font-size: 18px;
       font-weight: 700;
       color: #ffffff;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
 
     .logo span {
-      color: #22c55e;
+      color: var(--accent);
     }
 
     .nav-links {
@@ -63,60 +81,57 @@
     }
 
     .nav-links a {
-      color: #cbd5e1;
+      color: #c7cfdb;
       font-size: 15px;
       transition: 0.25s;
     }
 
     .nav-links a:hover {
-      color: #22c55e;
+      color: #ffffff;
     }
 
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background:
-        radial-gradient(circle at top left, rgba(34,197,94,0.16), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(59,130,246,0.14), transparent 24%),
-        linear-gradient(180deg, #060b16 0%, #0b1220 100%);
       padding-top: 90px;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
+      gap: 42px;
       align-items: center;
     }
 
     .eyebrow {
       display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid rgba(34,197,94,0.35);
+      padding: 9px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 999px;
-      color: #22c55e;
+      color: #cfc8ff;
+      background: rgba(255,255,255,0.03);
       font-size: 13px;
       margin-bottom: 22px;
-      background: rgba(34,197,94,0.08);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
     }
 
     .hero h1 {
       font-size: clamp(42px, 7vw, 74px);
-      line-height: 1.05;
+      line-height: 1.04;
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 18px;
     }
 
     .hero h1 span {
-      color: #22c55e;
+      color: var(--accent-hover);
     }
 
     .hero p {
       max-width: 640px;
       font-size: 18px;
-      color: #94a3b8;
+      color: var(--text-soft);
       margin-bottom: 28px;
     }
 
@@ -131,20 +146,21 @@
       align-items: center;
       justify-content: center;
       padding: 13px 22px;
-      border-radius: 12px;
+      border-radius: 14px;
       font-weight: 600;
       transition: 0.25s ease;
       border: 1px solid transparent;
     }
 
     .btn-primary {
-      background: #22c55e;
-      color: #06111a;
+      background: linear-gradient(135deg, #8b5cf6, #6d5dfc);
+      color: #ffffff;
+      box-shadow: 0 12px 30px rgba(109, 93, 252, 0.22);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(34,197,94,0.20);
+      box-shadow: 0 16px 34px rgba(109, 93, 252, 0.30);
     }
 
     .btn-secondary {
@@ -154,16 +170,21 @@
     }
 
     .btn-secondary:hover {
-      border-color: rgba(34,197,94,0.4);
-      color: #22c55e;
+      border-color: rgba(139, 92, 246, 0.35);
+      color: #ffffff;
+    }
+
+    .hero-card,
+    .glass-card,
+    .project-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
     }
 
     .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
       padding: 26px;
-      box-shadow: 0 20px 70px rgba(0,0,0,0.35);
     }
 
     .mock-top {
@@ -176,11 +197,11 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #334155;
+      background: #394150;
     }
 
     .stat-box {
-      background: #0b1322;
+      background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 18px;
       padding: 18px;
@@ -188,14 +209,14 @@
     }
 
     .stat-box h4 {
-      color: #22c55e;
+      color: #d8ccff;
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 8px;
     }
 
     .stat-box p {
-      color: #e2e8f0;
+      color: #e7e9ef;
       font-size: 15px;
       margin: 0;
     }
@@ -211,130 +232,110 @@
     }
 
     .section-title span {
-      color: #22c55e;
+      color: var(--accent-hover);
     }
 
     .section-subtitle {
-      color: #94a3b8;
+      color: var(--text-soft);
       max-width: 720px;
       margin-bottom: 34px;
     }
 
-    .about-grid {
+    .about-grid,
+    .projects-grid,
+    .skills-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 22px;
     }
 
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     .glass-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
       padding: 28px;
       transition: 0.25s;
     }
 
-    .glass-card:hover {
+    .glass-card:hover,
+    .project-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(34,197,94,0.22);
+      border-color: rgba(139, 92, 246, 0.18);
     }
 
-    .glass-card h3 {
+    .glass-card h3,
+    .project-content h3,
+    .skills-card h3,
+    .contact-card h3 {
       margin-bottom: 12px;
       font-size: 22px;
       color: #ffffff;
     }
 
-    .glass-card p {
-      color: #94a3b8;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
+    .glass-card p,
+    .project-content p,
+    .contact-card p {
+      color: var(--text-soft);
     }
 
     .project-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
       overflow: hidden;
       transition: 0.25s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(34,197,94,0.25);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.28);
     }
 
     .project-image {
       height: 220px;
       background:
-        linear-gradient(135deg, rgba(34,197,94,0.22), rgba(59,130,246,0.18)),
-        #0f172a;
+        linear-gradient(135deg, rgba(139, 92, 246, 0.16), rgba(59, 130, 246, 0.10)),
+        #0c1018;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #dbeafe;
+      color: #e7dcff;
       font-weight: 700;
       font-size: 20px;
       letter-spacing: 0.4px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .project-content {
       padding: 24px;
     }
 
-    .project-content h3 {
-      color: #fff;
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-
-    .project-content p {
-      color: #94a3b8;
-      margin-bottom: 18px;
-    }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .badge {
-      font-size: 12px;
-      color: #22c55e;
-      border: 1px solid rgba(34,197,94,0.35);
-      background: rgba(34,197,94,0.08);
-      border-radius: 999px;
-      padding: 8px 12px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .skills-card h3,
-    .contact-card h3 {
-      margin-bottom: 14px;
-      color: #ffffff;
-    }
-
+    .badges,
     .skills-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
 
-    .contact-card p {
-      color: #94a3b8;
-      margin-bottom: 14px;
+    .badges {
+      margin: 18px 0;
+    }
+
+    .badge {
+      font-size: 12px;
+      color: #e9e4ff;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: 999px;
+      padding: 8px 14px;
+      letter-spacing: 0.2px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
+    }
+
+    .badge:hover {
+      border-color: rgba(139, 92, 246, 0.24);
+      background: linear-gradient(180deg, rgba(139, 92, 246, 0.14), rgba(255,255,255,0.03));
     }
 
     .contact-links a {
@@ -345,13 +346,13 @@
     }
 
     .contact-links a:hover {
-      color: #22c55e;
+      color: var(--accent-hover);
     }
 
     footer {
       padding: 70px 0 30px;
       text-align: center;
-      color: #64748b;
+      color: #6c7485;
       font-size: 14px;
     }
 
@@ -418,15 +419,15 @@
         </div>
         <div class="stat-box">
           <h4>Main Focus</h4>
-          <p>Business Intelligence, dashboards and analytical storytelling.</p>
+          <p>Business Intelligence, dashboard design and analytical storytelling.</p>
         </div>
         <div class="stat-box">
           <h4>Core Stack</h4>
-          <p>Excel, SQL, Python, Power BI, Looker Studio.</p>
+          <p>Excel, SQL, Python, Power BI and Looker Studio.</p>
         </div>
         <div class="stat-box">
           <h4>Approach</h4>
-          <p>Clean analysis, business impact and clear communication.</p>
+          <p>Clean analysis, useful KPIs and strong business readability.</p>
         </div>
       </div>
     </div>
@@ -453,8 +454,7 @@
           <h3>How I Work</h3>
           <p>
             My approach is practical and business-oriented: I focus on useful KPIs,
-            clean visuals, and insights that help support decisions rather than
-            just showing numbers.
+            clean visuals and insights that support decisions, not just numbers.
           </p>
         </div>
       </div>
