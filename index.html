@@ -34,7 +34,6 @@
       --accent-2: #4f46e5;
       --accent-3: #c4b5fd;
       --accent-4: #a78bfa;
-      --success: #7dd3fc;
       --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
       --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.25);
       --radius-xl: 30px;
@@ -194,6 +193,14 @@
       color: var(--accent-3);
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .nav-links {
       display: flex;
       gap: 28px;
@@ -232,6 +239,36 @@
 
     .nav-link.active::after {
       transform: scaleX(1);
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: #c7cfdb;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(79,70,229,0.85));
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(99, 102, 241, 0.28);
     }
 
     .nav-cta {
@@ -762,7 +799,6 @@
     }
 
     .grid-2,
-    .grid-3,
     .projects-grid,
     .timeline-grid,
     .skills-grid,
@@ -775,10 +811,6 @@
 
     .grid-2 {
       grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, 1fr);
     }
 
     .projects-grid {
@@ -1136,6 +1168,16 @@
       transform: translateY(0);
     }
 
+    @media (max-width: 1180px) {
+      .nav-right {
+        gap: 14px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+    }
+
     @media (max-width: 1100px) {
       .hero-grid,
       .projects-grid,
@@ -1152,22 +1194,29 @@
       }
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 980px) {
       .nav-inner {
         flex-direction: column;
         gap: 14px;
       }
 
+      .nav-right {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+      }
+
       .nav-links {
-        gap: 16px;
+        justify-content: center;
       }
 
       .hero {
-        padding-top: 150px;
+        padding-top: 170px;
       }
+    }
 
+    @media (max-width: 920px) {
       .grid-2,
-      .grid-3,
       .project-highlights {
         grid-template-columns: 1fr;
       }
@@ -1211,6 +1260,10 @@
       .dashboard-grid {
         grid-template-columns: 1fr;
       }
+
+      .nav-links {
+        gap: 12px;
+      }
     }
   </style>
 </head>
@@ -1223,17 +1276,24 @@
         Edoardo<span>.</span>
       </a>
 
-      <div class="nav-links">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#value" class="nav-link">Value</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#journey" class="nav-link">Journey</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#home" class="nav-link active" data-i18n="navHome">Home</a>
+          <a href="#about" class="nav-link" data-i18n="navAbout">About</a>
+          <a href="#value" class="nav-link" data-i18n="navValue">Value</a>
+          <a href="#projects" class="nav-link" data-i18n="navProjects">Projects</a>
+          <a href="#journey" class="nav-link" data-i18n="navJourney">Journey</a>
+          <a href="#skills" class="nav-link" data-i18n="navSkills">Skills</a>
+          <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
+        </div>
 
-      <a href="#contact" class="nav-cta">Let’s Connect</a>
+        <div class="lang-toggle" aria-label="Language selector">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="it">IT</button>
+        </div>
+
+        <a href="#contact" class="nav-cta" data-i18n="navCta">Let’s Connect</a>
+      </div>
     </div>
   </nav>
 
@@ -1243,29 +1303,29 @@
 
     <div class="container hero-grid">
       <div class="hero-left reveal">
-        <div class="eyebrow">Data Analyst Portfolio • Business Intelligence • Data Storytelling</div>
+        <div class="eyebrow" data-i18n="heroEyebrow">Data Analyst Portfolio • Business Intelligence • Data Storytelling</div>
 
         <h1>
-          I turn <span class="typing"></span><br />
-          into business clarity.
+          <span data-i18n="heroTitlePrefix">I turn</span> <span class="typing"></span><br />
+          <span data-i18n="heroTitleSuffix">into business clarity.</span>
         </h1>
 
-        <p>
+        <p data-i18n="heroDesc">
           Data Analyst focused on transforming raw data into meaningful insights through data cleaning,
           KPI analysis, dashboard design and business-oriented storytelling. I build analytical projects
           that connect numbers, performance and decision-making.
         </p>
 
         <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">Explore Projects</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          <a href="#projects" class="btn btn-primary" data-i18n="heroBtnPrimary">Explore Projects</a>
+          <a href="#contact" class="btn btn-secondary" data-i18n="heroBtnSecondary">Contact Me</a>
         </div>
 
         <div class="hero-mini-points">
-          <span class="mini-pill">Business Intelligence</span>
-          <span class="mini-pill">KPI Monitoring</span>
-          <span class="mini-pill">Dashboard Design</span>
-          <span class="mini-pill">Data Storytelling</span>
+          <span class="mini-pill" data-i18n="heroPill1">Business Intelligence</span>
+          <span class="mini-pill" data-i18n="heroPill2">KPI Monitoring</span>
+          <span class="mini-pill" data-i18n="heroPill3">Dashboard Design</span>
+          <span class="mini-pill" data-i18n="heroPill4">Data Storytelling</span>
         </div>
       </div>
 
@@ -1277,37 +1337,37 @@
               <span class="mock-dot"></span>
               <span class="mock-dot"></span>
             </div>
-            <div class="dashboard-chip">Portfolio Snapshot</div>
+            <div class="dashboard-chip" data-i18n="dashboardChip">Portfolio Snapshot</div>
           </div>
 
           <div class="dashboard-grid">
             <div class="dashboard-card">
-              <div class="dashboard-label">Main Focus</div>
-              <div class="dashboard-value">BI & Analytics</div>
-              <div class="dashboard-text">Projects built around performance, behavior and business insights.</div>
+              <div class="dashboard-label" data-i18n="dash1Label">Main Focus</div>
+              <div class="dashboard-value" data-i18n="dash1Value">BI & Analytics</div>
+              <div class="dashboard-text" data-i18n="dash1Text">Projects built around performance, behavior and business insights.</div>
             </div>
 
             <div class="dashboard-card">
-              <div class="dashboard-label">Core Stack</div>
-              <div class="dashboard-value">Excel · SQL · Python</div>
-              <div class="dashboard-text">Power BI, Looker Studio and GitHub complete the workflow.</div>
+              <div class="dashboard-label" data-i18n="dash2Label">Core Stack</div>
+              <div class="dashboard-value" data-i18n="dash2Value">Excel · SQL · Python</div>
+              <div class="dashboard-text" data-i18n="dash2Text">Power BI, Looker Studio and GitHub complete the workflow.</div>
             </div>
 
             <div class="dashboard-card">
-              <div class="dashboard-label">Workflow</div>
-              <div class="dashboard-value">End-to-End</div>
-              <div class="dashboard-text">Cleaning, exploration, KPI analysis, reporting and visual storytelling.</div>
+              <div class="dashboard-label" data-i18n="dash3Label">Workflow</div>
+              <div class="dashboard-value" data-i18n="dash3Value">End-to-End</div>
+              <div class="dashboard-text" data-i18n="dash3Text">Cleaning, exploration, KPI analysis, reporting and visual storytelling.</div>
             </div>
 
             <div class="dashboard-card">
-              <div class="dashboard-label">Approach</div>
-              <div class="dashboard-value">Business First</div>
-              <div class="dashboard-text">Clarity, structure and useful insights over unnecessary complexity.</div>
+              <div class="dashboard-label" data-i18n="dash4Label">Approach</div>
+              <div class="dashboard-value" data-i18n="dash4Value">Business First</div>
+              <div class="dashboard-text" data-i18n="dash4Text">Clarity, structure and useful insights over unnecessary complexity.</div>
             </div>
           </div>
 
           <div class="dashboard-wide">
-            <h4>Analytical Momentum</h4>
+            <h4 data-i18n="dashWideTitle">Analytical Momentum</h4>
             <div class="bars">
               <span class="bar bar-1"></span>
               <span class="bar bar-2"></span>
@@ -1317,12 +1377,12 @@
               <span class="bar bar-6"></span>
             </div>
             <div class="axis-labels">
-              <span>Data Prep</span>
-              <span>Analysis</span>
-              <span>KPI</span>
-              <span>Storytelling</span>
-              <span>BI</span>
-              <span>Reporting</span>
+              <span data-i18n="axis1">Data Prep</span>
+              <span data-i18n="axis2">Analysis</span>
+              <span data-i18n="axis3">KPI</span>
+              <span data-i18n="axis4">Storytelling</span>
+              <span data-i18n="axis5">BI</span>
+              <span data-i18n="axis6">Reporting</span>
             </div>
           </div>
         </div>
@@ -1337,36 +1397,36 @@
           <div class="stats-top">
             <div class="stats-badge">📊</div>
           </div>
-          <h3>2+</h3>
-          <h4>End-to-End BI Projects</h4>
-          <p>Portfolio work built around analysis, dashboarding and business interpretation.</p>
+          <h3 data-i18n="stats1Number">2+</h3>
+          <h4 data-i18n="stats1Title">End-to-End BI Projects</h4>
+          <p data-i18n="stats1Text">Portfolio work built around analysis, dashboarding and business interpretation.</p>
         </div>
 
         <div class="stats-item spotlight">
           <div class="stats-top">
             <div class="stats-badge">🛠️</div>
           </div>
-          <h3>6</h3>
-          <h4>Main Tools</h4>
-          <p>Excel, SQL, Python, Power BI, Looker Studio and GitHub in the core workflow.</p>
+          <h3 data-i18n="stats2Number">6</h3>
+          <h4 data-i18n="stats2Title">Main Tools</h4>
+          <p data-i18n="stats2Text">Excel, SQL, Python, Power BI, Looker Studio and GitHub in the core workflow.</p>
         </div>
 
         <div class="stats-item spotlight">
           <div class="stats-top">
             <div class="stats-badge">📈</div>
           </div>
-          <h3>100%</h3>
-          <h4>Business-Oriented</h4>
-          <p>Every project is designed to explain performance and support better decisions.</p>
+          <h3 data-i18n="stats3Number">100%</h3>
+          <h4 data-i18n="stats3Title">Business-Oriented</h4>
+          <p data-i18n="stats3Text">Every project is designed to explain performance and support better decisions.</p>
         </div>
 
         <div class="stats-item spotlight">
           <div class="stats-top">
             <div class="stats-badge">🧠</div>
           </div>
-          <h3>Full</h3>
-          <h4>Analytical Workflow</h4>
-          <p>From raw data to structured insight, visual communication and actionable reporting.</p>
+          <h3 data-i18n="stats4Number">Full</h3>
+          <h4 data-i18n="stats4Title">Analytical Workflow</h4>
+          <p data-i18n="stats4Text">From raw data to structured insight, visual communication and actionable reporting.</p>
         </div>
       </div>
     </div>
@@ -1377,9 +1437,9 @@
 
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-kicker">About Me</div>
-        <h2 class="section-title">A profile built around <span>clarity, analysis and business value</span></h2>
-        <p class="section-subtitle">
+        <div class="section-kicker" data-i18n="aboutKicker">About Me</div>
+        <h2 class="section-title"><span data-i18n="aboutTitle">A profile built around clarity, analysis and business value</span></h2>
+        <p class="section-subtitle" data-i18n="aboutSubtitle">
           I enjoy working with data in a structured way, connecting analysis and communication
           to make information more useful, readable and decision-oriented.
         </p>
@@ -1388,8 +1448,8 @@
       <div class="grid-2">
         <div class="glass-card spotlight reveal">
           <div class="glass-icon">👤</div>
-          <h3>Who I Am</h3>
-          <p>
+          <h3 data-i18n="aboutCard1Title">Who I Am</h3>
+          <p data-i18n="aboutCard1Text">
             I am a Data Analyst focused on transforming complex datasets into clear and useful insights.
             I like working across the analytical workflow, from cleaning and exploration to KPI monitoring,
             report building and visual storytelling.
@@ -1398,8 +1458,8 @@
 
         <div class="glass-card spotlight reveal">
           <div class="glass-icon">🎯</div>
-          <h3>How I Work</h3>
-          <p>
+          <h3 data-i18n="aboutCard2Title">How I Work</h3>
+          <p data-i18n="aboutCard2Text">
             My approach is practical, structured and business-oriented. I focus on identifying patterns,
             understanding performance and presenting findings in a way that helps different audiences
             read the story behind the numbers.
@@ -1412,9 +1472,9 @@
   <section id="value" class="section-shell">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-kicker">What I Bring</div>
-        <h2 class="section-title">A combination of <span>analysis, business thinking and communication</span></h2>
-        <p class="section-subtitle">
+        <div class="section-kicker" data-i18n="valueKicker">What I Bring</div>
+        <h2 class="section-title"><span data-i18n="valueTitle">A combination of analysis, business thinking and communication</span></h2>
+        <p class="section-subtitle" data-i18n="valueSubtitle">
           The value I aim to bring is not just technical execution, but the ability to organize data into
           something meaningful, readable and relevant for performance understanding.
         </p>
@@ -1423,8 +1483,8 @@
       <div class="grid-2">
         <div class="glass-card spotlight reveal">
           <div class="glass-icon">📌</div>
-          <h3>Analytical Mindset</h3>
-          <p>
+          <h3 data-i18n="valueCard1Title">Analytical Mindset</h3>
+          <p data-i18n="valueCard1Text">
             I enjoy exploring datasets, identifying patterns and building structured analyses that
             move from raw information to clear interpretation.
           </p>
@@ -1432,8 +1492,8 @@
 
         <div class="glass-card spotlight reveal">
           <div class="glass-icon">💼</div>
-          <h3>Business Focus</h3>
-          <p>
+          <h3 data-i18n="valueCard2Title">Business Focus</h3>
+          <p data-i18n="valueCard2Text">
             I look for insights that explain performance, highlight inefficiencies and support
             decision-making with a practical business perspective.
           </p>
@@ -1441,8 +1501,8 @@
 
         <div class="glass-card spotlight reveal">
           <div class="glass-icon">🧩</div>
-          <h3>End-to-End Workflow</h3>
-          <p>
+          <h3 data-i18n="valueCard3Title">End-to-End Workflow</h3>
+          <p data-i18n="valueCard3Text">
             I like building complete analytical projects that connect preparation, exploration,
             KPI logic, dashboards and presentation into one coherent output.
           </p>
@@ -1450,8 +1510,8 @@
 
         <div class="glass-card spotlight reveal">
           <div class="glass-icon">✨</div>
-          <h3>Clear Communication</h3>
-          <p>
+          <h3 data-i18n="valueCard4Title">Clear Communication</h3>
+          <p data-i18n="valueCard4Text">
             I aim to present data in a way that is understandable, focused and visually effective,
             so insights are easier to absorb and act upon.
           </p>
@@ -1463,9 +1523,9 @@
   <section id="projects" class="section-shell">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-kicker">Featured Work</div>
-        <h2 class="section-title">Projects where analysis becomes <span>business storytelling</span></h2>
-        <p class="section-subtitle">
+        <div class="section-kicker" data-i18n="projectsKicker">Featured Work</div>
+        <h2 class="section-title"><span data-i18n="projectsTitle">Projects where analysis becomes business storytelling</span></h2>
+        <p class="section-subtitle" data-i18n="projectsSubtitle">
           Selected portfolio projects built to explore customer behavior, financial activity,
           KPI performance and decision-oriented visual reporting.
         </p>
@@ -1482,12 +1542,12 @@
 
           <div class="project-content">
             <div class="project-topline">
-              <div class="project-label">Featured Project</div>
-              <div class="project-role">End-to-End Business Intelligence Case Study</div>
+              <div class="project-label" data-i18n="project1Label">Featured Project</div>
+              <div class="project-role" data-i18n="project1Role">End-to-End Business Intelligence Case Study</div>
             </div>
 
-            <h3>Instacart Analytics Project</h3>
-            <p>
+            <h3 data-i18n="project1Title">Instacart Analytics Project</h3>
+            <p data-i18n="project1Text">
               End-to-end analysis of transactional data focused on customer behavior, basket composition,
               product performance and purchasing patterns. Built to connect data preparation, exploratory
               analysis and dashboard storytelling into a business-oriented reporting experience.
@@ -1495,16 +1555,16 @@
 
             <div class="project-highlights">
               <div class="project-highlight">
-                <strong>Customer Behavior</strong>
-                <span>Purchase habits and ordering patterns</span>
+                <strong data-i18n="project1Highlight1Title">Customer Behavior</strong>
+                <span data-i18n="project1Highlight1Text">Purchase habits and ordering patterns</span>
               </div>
               <div class="project-highlight">
-                <strong>Product Insights</strong>
-                <span>Performance across products and categories</span>
+                <strong data-i18n="project1Highlight2Title">Product Insights</strong>
+                <span data-i18n="project1Highlight2Text">Performance across products and categories</span>
               </div>
               <div class="project-highlight">
-                <strong>Dashboard Storytelling</strong>
-                <span>Interactive Power BI reporting</span>
+                <strong data-i18n="project1Highlight3Title">Dashboard Storytelling</strong>
+                <span data-i18n="project1Highlight3Text">Interactive Power BI reporting</span>
               </div>
             </div>
 
@@ -1513,12 +1573,12 @@
               <span class="badge">SQL</span>
               <span class="badge">Power BI</span>
               <span class="badge">Excel</span>
-              <span class="badge">Data Cleaning</span>
-              <span class="badge">KPI Analysis</span>
+              <span class="badge" data-i18n="badgeCleaning">Data Cleaning</span>
+              <span class="badge" data-i18n="badgeKpi">KPI Analysis</span>
             </div>
 
             <div class="project-actions">
-              <a class="btn btn-primary" href="https://github.com/MorgilloEdoardo/instacart-business-intelligence" target="_blank">View Project</a>
+              <a class="btn btn-primary" href="https://github.com/MorgilloEdoardo/instacart-business-intelligence" target="_blank" data-i18n="viewProject">View Project</a>
             </div>
           </div>
         </div>
@@ -1534,12 +1594,12 @@
 
             <div class="project-content">
               <div class="project-topline">
-                <div class="project-label">Business Dashboard</div>
-                <div class="project-role">Performance Monitoring</div>
+                <div class="project-label" data-i18n="project2Label">Business Dashboard</div>
+                <div class="project-role" data-i18n="project2Role">Performance Monitoring</div>
               </div>
 
-              <h3>Financial Transactions Analysis</h3>
-              <p>
+              <h3 data-i18n="project2Title">Financial Transactions Analysis</h3>
+              <p data-i18n="project2Text">
                 Analytical project focused on transaction trends, customer activity,
                 financial performance and operational monitoring through KPI-driven dashboard design.
               </p>
@@ -1548,19 +1608,19 @@
                 <span class="badge">Power BI</span>
                 <span class="badge">DAX</span>
                 <span class="badge">Excel</span>
-                <span class="badge">Business Analysis</span>
+                <span class="badge" data-i18n="badgeBusinessAnalysis">Business Analysis</span>
               </div>
 
               <div class="project-actions">
-                <a class="btn btn-secondary" href="https://github.com/MorgilloEdoardo/financial-transactions-business-intelligence" target="_blank">View Project</a>
+                <a class="btn btn-secondary" href="https://github.com/MorgilloEdoardo/financial-transactions-business-intelligence" target="_blank" data-i18n="viewProject">View Project</a>
               </div>
             </div>
           </div>
 
           <div class="glass-card spotlight reveal">
             <div class="glass-icon">🚀</div>
-            <h3>What Makes These Projects Strong</h3>
-            <p>
+            <h3 data-i18n="projectsSideTitle">What Makes These Projects Strong</h3>
+            <p data-i18n="projectsSideText">
               Each project is built not only to show technical execution, but also to demonstrate how data can
               be structured into business questions, KPI logic, visual communication and decision-support storytelling.
             </p>
@@ -1573,9 +1633,9 @@
   <section id="journey" class="section-shell">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-kicker">Journey</div>
-        <h2 class="section-title">My path in <span>data and business intelligence</span></h2>
-        <p class="section-subtitle">
+        <div class="section-kicker" data-i18n="journeyKicker">Journey</div>
+        <h2 class="section-title"><span data-i18n="journeyTitle">My path in data and business intelligence</span></h2>
+        <p class="section-subtitle" data-i18n="journeySubtitle">
           A concise overview of how I am building my profile through tools, projects
           and practical analytical work.
         </p>
@@ -1583,10 +1643,10 @@
 
       <div class="timeline-grid">
         <div class="timeline-card spotlight reveal">
-          <div class="timeline-date">Foundation</div>
+          <div class="timeline-date" data-i18n="journeyStep1Date">Foundation</div>
           <div>
-            <h3>Analytical Core Skills</h3>
-            <p>
+            <h3 data-i18n="journeyStep1Title">Analytical Core Skills</h3>
+            <p data-i18n="journeyStep1Text">
               Built a solid foundation in Excel, SQL and Python to manage data cleaning,
               querying, transformation and exploratory analysis in a structured way.
             </p>
@@ -1599,10 +1659,10 @@
         </div>
 
         <div class="timeline-card spotlight reveal">
-          <div class="timeline-date">Business Intelligence</div>
+          <div class="timeline-date" data-i18n="journeyStep2Date">Business Intelligence</div>
           <div>
-            <h3>Dashboard & Reporting Development</h3>
-            <p>
+            <h3 data-i18n="journeyStep2Title">Dashboard & Reporting Development</h3>
+            <p data-i18n="journeyStep2Text">
               Expanded into Power BI and Looker Studio to translate analysis into interactive dashboards,
               KPI reporting and more effective visual storytelling.
             </p>
@@ -1615,33 +1675,33 @@
         </div>
 
         <div class="timeline-card spotlight reveal">
-          <div class="timeline-date">Portfolio Projects</div>
+          <div class="timeline-date" data-i18n="journeyStep3Date">Portfolio Projects</div>
           <div>
-            <h3>From Technical Work to Business Narratives</h3>
-            <p>
+            <h3 data-i18n="journeyStep3Title">From Technical Work to Business Narratives</h3>
+            <p data-i18n="journeyStep3Text">
               Applied tools and analytical thinking to end-to-end projects focused on
               customer behavior, financial trends and performance interpretation.
             </p>
             <div class="timeline-meta">
               <span>Instacart Analytics</span>
               <span>Financial Transactions</span>
-              <span>Business Storytelling</span>
+              <span data-i18n="journeyStoryTag">Business Storytelling</span>
             </div>
           </div>
         </div>
 
         <div class="timeline-card spotlight reveal">
-          <div class="timeline-date">Current Direction</div>
+          <div class="timeline-date" data-i18n="journeyStep4Date">Current Direction</div>
           <div>
-            <h3>Growing as a Data Analyst</h3>
-            <p>
+            <h3 data-i18n="journeyStep4Title">Growing as a Data Analyst</h3>
+            <p data-i18n="journeyStep4Text">
               Continuing to strengthen a profile centered on analysis, business intelligence,
               dashboard development and decision-oriented communication.
             </p>
             <div class="timeline-meta">
               <span>Data Analyst</span>
               <span>Business Intelligence</span>
-              <span>Decision Support</span>
+              <span data-i18n="decisionSupport">Decision Support</span>
             </div>
           </div>
         </div>
@@ -1652,9 +1712,9 @@
   <section id="skills" class="section-shell">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-kicker">Skills</div>
-        <h2 class="section-title">Tools and strengths I use to turn <span>data into insight</span></h2>
-        <p class="section-subtitle">
+        <div class="section-kicker" data-i18n="skillsKicker">Skills</div>
+        <h2 class="section-title"><span data-i18n="skillsTitle">Tools and strengths I use to turn data into insight</span></h2>
+        <p class="section-subtitle" data-i18n="skillsSubtitle">
           A mix of technical tools, analytical capabilities and communication skills
           that shape the way I build projects and present results.
         </p>
@@ -1663,8 +1723,8 @@
       <div class="skills-grid">
         <div class="skills-card glass-card spotlight reveal">
           <div class="glass-icon">🛠️</div>
-          <h3>Tools</h3>
-          <p class="skills-desc">
+          <h3 data-i18n="skillsCard1Title">Tools</h3>
+          <p class="skills-desc" data-i18n="skillsCard1Text">
             Main tools used to work with data, build dashboards and structure portfolio projects.
           </p>
           <div class="skills-list">
@@ -1679,33 +1739,33 @@
 
         <div class="skills-card glass-card spotlight reveal">
           <div class="glass-icon">📊</div>
-          <h3>Analysis</h3>
-          <p class="skills-desc">
+          <h3 data-i18n="skillsCard2Title">Analysis</h3>
+          <p class="skills-desc" data-i18n="skillsCard2Text">
             Core analytical areas I focus on when working with datasets and business questions.
           </p>
           <div class="skills-list">
-            <span class="badge">Data Cleaning</span>
-            <span class="badge">Exploratory Analysis</span>
-            <span class="badge">KPI Analysis</span>
-            <span class="badge">Performance Analysis</span>
-            <span class="badge">Business Analysis</span>
-            <span class="badge">Trend Identification</span>
+            <span class="badge" data-i18n="badgeCleaning">Data Cleaning</span>
+            <span class="badge" data-i18n="badgeExploratory">Exploratory Analysis</span>
+            <span class="badge" data-i18n="badgeKpi">KPI Analysis</span>
+            <span class="badge" data-i18n="badgePerformance">Performance Analysis</span>
+            <span class="badge" data-i18n="badgeBusinessAnalysis">Business Analysis</span>
+            <span class="badge" data-i18n="badgeTrend">Trend Identification</span>
           </div>
         </div>
 
         <div class="skills-card glass-card spotlight reveal">
           <div class="glass-icon">✨</div>
-          <h3>Communication</h3>
-          <p class="skills-desc">
+          <h3 data-i18n="skillsCard3Title">Communication</h3>
+          <p class="skills-desc" data-i18n="skillsCard3Text">
             How I present analytical work so that findings become more understandable and useful.
           </p>
           <div class="skills-list">
-            <span class="badge">Dashboard Design</span>
-            <span class="badge">Reporting</span>
-            <span class="badge">Data Visualization</span>
-            <span class="badge">Data Storytelling</span>
-            <span class="badge">Insight Communication</span>
-            <span class="badge">Business Readability</span>
+            <span class="badge" data-i18n="badgeDashboard">Dashboard Design</span>
+            <span class="badge" data-i18n="badgeReporting">Reporting</span>
+            <span class="badge" data-i18n="badgeVisualization">Data Visualization</span>
+            <span class="badge" data-i18n="badgeStorytelling">Data Storytelling</span>
+            <span class="badge" data-i18n="badgeInsightCommunication">Insight Communication</span>
+            <span class="badge" data-i18n="badgeBusinessReadability">Business Readability</span>
           </div>
         </div>
       </div>
@@ -1715,9 +1775,9 @@
   <section id="contact" class="section-shell">
     <div class="container">
       <div class="section-head reveal">
-        <div class="section-kicker">Contact</div>
-        <h2 class="section-title">Let’s build value from <span>data, insight and clarity</span></h2>
-        <p class="section-subtitle">
+        <div class="section-kicker" data-i18n="contactKicker">Contact</div>
+        <h2 class="section-title"><span data-i18n="contactTitle">Let’s build value from data, insight and clarity</span></h2>
+        <p class="section-subtitle" data-i18n="contactSubtitle">
           Open to opportunities in data analysis, business intelligence and analytical roles
           focused on performance understanding and decision support.
         </p>
@@ -1725,18 +1785,18 @@
 
       <div class="contact-grid">
         <div class="contact-panel spotlight reveal">
-          <h3>Let’s Connect</h3>
-          <p class="contact-lead">
+          <h3 data-i18n="contactPanelTitle">Let’s Connect</h3>
+          <p class="contact-lead" data-i18n="contactLead">
             I am interested in opportunities where analysis can support business decisions,
             KPI monitoring, dashboard development and clearer data-driven communication.
           </p>
 
-          <p>
+          <p data-i18n="contactText">
             If you would like to explore my work or get in touch regarding collaborations,
             roles or portfolio projects, you can find me through the channels on this page.
           </p>
 
-          <div class="contact-note">
+          <div class="contact-note" data-i18n="contactNote">
             Available for conversations around Data Analyst, Business Intelligence
             and dashboard-focused opportunities.
           </div>
@@ -1747,7 +1807,7 @@
             <div class="contact-link-left">
               <div class="contact-icon">💻</div>
               <div class="contact-link-text">
-                <strong>GitHub</strong>
+                <strong data-i18n="contactGithubTitle">GitHub</strong>
                 <span>MorgilloEdoardo</span>
               </div>
             </div>
@@ -1758,7 +1818,7 @@
             <div class="contact-link-left">
               <div class="contact-icon">🔗</div>
               <div class="contact-link-text">
-                <strong>LinkedIn</strong>
+                <strong data-i18n="contactLinkedinTitle">LinkedIn</strong>
                 <span>Edoardo Morgillo</span>
               </div>
             </div>
@@ -1769,7 +1829,7 @@
             <div class="contact-link-left">
               <div class="contact-icon">✉️</div>
               <div class="contact-link-text">
-                <strong>Email</strong>
+                <strong data-i18n="contactEmailTitle">Email</strong>
                 <span>edoardomorgillo@icloud.com</span>
               </div>
             </div>
@@ -1780,11 +1840,324 @@
     </div>
   </section>
 
-  <footer>
+  <footer data-i18n="footerText">
     © 2026 Edoardo Morgillo — Data Analyst Portfolio
   </footer>
 
   <script>
+    const translations = {
+      en: {
+        pageTitle: "Edoardo Morgillo | Data Analyst",
+        navHome: "Home",
+        navAbout: "About",
+        navValue: "Value",
+        navProjects: "Projects",
+        navJourney: "Journey",
+        navSkills: "Skills",
+        navContact: "Contact",
+        navCta: "Let’s Connect",
+
+        heroEyebrow: "Data Analyst Portfolio • Business Intelligence • Data Storytelling",
+        heroTitlePrefix: "I turn",
+        heroTitleSuffix: "into business clarity.",
+        heroDesc: "Data Analyst focused on transforming raw data into meaningful insights through data cleaning, KPI analysis, dashboard design and business-oriented storytelling. I build analytical projects that connect numbers, performance and decision-making.",
+        heroBtnPrimary: "Explore Projects",
+        heroBtnSecondary: "Contact Me",
+        heroPill1: "Business Intelligence",
+        heroPill2: "KPI Monitoring",
+        heroPill3: "Dashboard Design",
+        heroPill4: "Data Storytelling",
+
+        dashboardChip: "Portfolio Snapshot",
+        dash1Label: "Main Focus",
+        dash1Value: "BI & Analytics",
+        dash1Text: "Projects built around performance, behavior and business insights.",
+        dash2Label: "Core Stack",
+        dash2Value: "Excel · SQL · Python",
+        dash2Text: "Power BI, Looker Studio and GitHub complete the workflow.",
+        dash3Label: "Workflow",
+        dash3Value: "End-to-End",
+        dash3Text: "Cleaning, exploration, KPI analysis, reporting and visual storytelling.",
+        dash4Label: "Approach",
+        dash4Value: "Business First",
+        dash4Text: "Clarity, structure and useful insights over unnecessary complexity.",
+        dashWideTitle: "Analytical Momentum",
+        axis1: "Data Prep",
+        axis2: "Analysis",
+        axis3: "KPI",
+        axis4: "Storytelling",
+        axis5: "BI",
+        axis6: "Reporting",
+
+        stats1Number: "2+",
+        stats1Title: "End-to-End BI Projects",
+        stats1Text: "Portfolio work built around analysis, dashboarding and business interpretation.",
+        stats2Number: "6",
+        stats2Title: "Main Tools",
+        stats2Text: "Excel, SQL, Python, Power BI, Looker Studio and GitHub in the core workflow.",
+        stats3Number: "100%",
+        stats3Title: "Business-Oriented",
+        stats3Text: "Every project is designed to explain performance and support better decisions.",
+        stats4Number: "Full",
+        stats4Title: "Analytical Workflow",
+        stats4Text: "From raw data to structured insight, visual communication and actionable reporting.",
+
+        aboutKicker: "About Me",
+        aboutTitle: "A profile built around clarity, analysis and business value",
+        aboutSubtitle: "I enjoy working with data in a structured way, connecting analysis and communication to make information more useful, readable and decision-oriented.",
+        aboutCard1Title: "Who I Am",
+        aboutCard1Text: "I am a Data Analyst focused on transforming complex datasets into clear and useful insights. I like working across the analytical workflow, from cleaning and exploration to KPI monitoring, report building and visual storytelling.",
+        aboutCard2Title: "How I Work",
+        aboutCard2Text: "My approach is practical, structured and business-oriented. I focus on identifying patterns, understanding performance and presenting findings in a way that helps different audiences read the story behind the numbers.",
+
+        valueKicker: "What I Bring",
+        valueTitle: "A combination of analysis, business thinking and communication",
+        valueSubtitle: "The value I aim to bring is not just technical execution, but the ability to organize data into something meaningful, readable and relevant for performance understanding.",
+        valueCard1Title: "Analytical Mindset",
+        valueCard1Text: "I enjoy exploring datasets, identifying patterns and building structured analyses that move from raw information to clear interpretation.",
+        valueCard2Title: "Business Focus",
+        valueCard2Text: "I look for insights that explain performance, highlight inefficiencies and support decision-making with a practical business perspective.",
+        valueCard3Title: "End-to-End Workflow",
+        valueCard3Text: "I like building complete analytical projects that connect preparation, exploration, KPI logic, dashboards and presentation into one coherent output.",
+        valueCard4Title: "Clear Communication",
+        valueCard4Text: "I aim to present data in a way that is understandable, focused and visually effective, so insights are easier to absorb and act upon.",
+
+        projectsKicker: "Featured Work",
+        projectsTitle: "Projects where analysis becomes business storytelling",
+        projectsSubtitle: "Selected portfolio projects built to explore customer behavior, financial activity, KPI performance and decision-oriented visual reporting.",
+        project1Label: "Featured Project",
+        project1Role: "End-to-End Business Intelligence Case Study",
+        project1Title: "Instacart Analytics Project",
+        project1Text: "End-to-end analysis of transactional data focused on customer behavior, basket composition, product performance and purchasing patterns. Built to connect data preparation, exploratory analysis and dashboard storytelling into a business-oriented reporting experience.",
+        project1Highlight1Title: "Customer Behavior",
+        project1Highlight1Text: "Purchase habits and ordering patterns",
+        project1Highlight2Title: "Product Insights",
+        project1Highlight2Text: "Performance across products and categories",
+        project1Highlight3Title: "Dashboard Storytelling",
+        project1Highlight3Text: "Interactive Power BI reporting",
+        project2Label: "Business Dashboard",
+        project2Role: "Performance Monitoring",
+        project2Title: "Financial Transactions Analysis",
+        project2Text: "Analytical project focused on transaction trends, customer activity, financial performance and operational monitoring through KPI-driven dashboard design.",
+        projectsSideTitle: "What Makes These Projects Strong",
+        projectsSideText: "Each project is built not only to show technical execution, but also to demonstrate how data can be structured into business questions, KPI logic, visual communication and decision-support storytelling.",
+        viewProject: "View Project",
+
+        journeyKicker: "Journey",
+        journeyTitle: "My path in data and business intelligence",
+        journeySubtitle: "A concise overview of how I am building my profile through tools, projects and practical analytical work.",
+        journeyStep1Date: "Foundation",
+        journeyStep1Title: "Analytical Core Skills",
+        journeyStep1Text: "Built a solid foundation in Excel, SQL and Python to manage data cleaning, querying, transformation and exploratory analysis in a structured way.",
+        journeyStep2Date: "Business Intelligence",
+        journeyStep2Title: "Dashboard & Reporting Development",
+        journeyStep2Text: "Expanded into Power BI and Looker Studio to translate analysis into interactive dashboards, KPI reporting and more effective visual storytelling.",
+        journeyStep3Date: "Portfolio Projects",
+        journeyStep3Title: "From Technical Work to Business Narratives",
+        journeyStep3Text: "Applied tools and analytical thinking to end-to-end projects focused on customer behavior, financial trends and performance interpretation.",
+        journeyStep4Date: "Current Direction",
+        journeyStep4Title: "Growing as a Data Analyst",
+        journeyStep4Text: "Continuing to strengthen a profile centered on analysis, business intelligence, dashboard development and decision-oriented communication.",
+        journeyStoryTag: "Business Storytelling",
+        decisionSupport: "Decision Support",
+
+        skillsKicker: "Skills",
+        skillsTitle: "Tools and strengths I use to turn data into insight",
+        skillsSubtitle: "A mix of technical tools, analytical capabilities and communication skills that shape the way I build projects and present results.",
+        skillsCard1Title: "Tools",
+        skillsCard1Text: "Main tools used to work with data, build dashboards and structure portfolio projects.",
+        skillsCard2Title: "Analysis",
+        skillsCard2Text: "Core analytical areas I focus on when working with datasets and business questions.",
+        skillsCard3Title: "Communication",
+        skillsCard3Text: "How I present analytical work so that findings become more understandable and useful.",
+
+        badgeCleaning: "Data Cleaning",
+        badgeExploratory: "Exploratory Analysis",
+        badgeKpi: "KPI Analysis",
+        badgePerformance: "Performance Analysis",
+        badgeBusinessAnalysis: "Business Analysis",
+        badgeTrend: "Trend Identification",
+        badgeDashboard: "Dashboard Design",
+        badgeReporting: "Reporting",
+        badgeVisualization: "Data Visualization",
+        badgeStorytelling: "Data Storytelling",
+        badgeInsightCommunication: "Insight Communication",
+        badgeBusinessReadability: "Business Readability",
+
+        contactKicker: "Contact",
+        contactTitle: "Let’s build value from data, insight and clarity",
+        contactSubtitle: "Open to opportunities in data analysis, business intelligence and analytical roles focused on performance understanding and decision support.",
+        contactPanelTitle: "Let’s Connect",
+        contactLead: "I am interested in opportunities where analysis can support business decisions, KPI monitoring, dashboard development and clearer data-driven communication.",
+        contactText: "If you would like to explore my work or get in touch regarding collaborations, roles or portfolio projects, you can find me through the channels on this page.",
+        contactNote: "Available for conversations around Data Analyst, Business Intelligence and dashboard-focused opportunities.",
+        contactGithubTitle: "GitHub",
+        contactLinkedinTitle: "LinkedIn",
+        contactEmailTitle: "Email",
+
+        footerText: "© 2026 Edoardo Morgillo — Data Analyst Portfolio"
+      },
+
+      it: {
+        pageTitle: "Edoardo Morgillo | Data Analyst",
+        navHome: "Home",
+        navAbout: "Chi Sono",
+        navValue: "Valore",
+        navProjects: "Progetti",
+        navJourney: "Percorso",
+        navSkills: "Competenze",
+        navContact: "Contatti",
+        navCta: "Contattami",
+
+        heroEyebrow: "Portfolio Data Analyst • Business Intelligence • Data Storytelling",
+        heroTitlePrefix: "Trasformo",
+        heroTitleSuffix: "in chiarezza per il business.",
+        heroDesc: "Data Analyst focalizzato nel trasformare dati grezzi in insight significativi attraverso data cleaning, analisi KPI, dashboard design e storytelling orientato al business. Realizzo progetti analitici che collegano numeri, performance e decisioni.",
+        heroBtnPrimary: "Esplora i Progetti",
+        heroBtnSecondary: "Contattami",
+        heroPill1: "Business Intelligence",
+        heroPill2: "Monitoraggio KPI",
+        heroPill3: "Dashboard Design",
+        heroPill4: "Data Storytelling",
+
+        dashboardChip: "Panoramica Portfolio",
+        dash1Label: "Focus Principale",
+        dash1Value: "BI & Analytics",
+        dash1Text: "Progetti costruiti attorno a performance, comportamento e insight di business.",
+        dash2Label: "Stack Principale",
+        dash2Value: "Excel · SQL · Python",
+        dash2Text: "Power BI, Looker Studio e GitHub completano il workflow.",
+        dash3Label: "Workflow",
+        dash3Value: "End-to-End",
+        dash3Text: "Pulizia dati, esplorazione, analisi KPI, reporting e visual storytelling.",
+        dash4Label: "Approccio",
+        dash4Value: "Business First",
+        dash4Text: "Chiarezza, struttura e insight utili prima della complessità inutile.",
+        dashWideTitle: "Momentum Analitico",
+        axis1: "Prep Dati",
+        axis2: "Analisi",
+        axis3: "KPI",
+        axis4: "Storytelling",
+        axis5: "BI",
+        axis6: "Reporting",
+
+        stats1Number: "2+",
+        stats1Title: "Progetti BI End-to-End",
+        stats1Text: "Lavori portfolio costruiti su analisi, dashboard e interpretazione di business.",
+        stats2Number: "6",
+        stats2Title: "Strumenti Principali",
+        stats2Text: "Excel, SQL, Python, Power BI, Looker Studio e GitHub nel workflow principale.",
+        stats3Number: "100%",
+        stats3Title: "Orientato al Business",
+        stats3Text: "Ogni progetto è pensato per spiegare la performance e supportare decisioni migliori.",
+        stats4Number: "Completo",
+        stats4Title: "Workflow Analitico",
+        stats4Text: "Dal dato grezzo all’insight strutturato, alla comunicazione visiva e al reporting.",
+
+        aboutKicker: "Chi Sono",
+        aboutTitle: "Un profilo costruito su chiarezza, analisi e valore per il business",
+        aboutSubtitle: "Mi piace lavorare sui dati in modo strutturato, collegando analisi e comunicazione per rendere le informazioni più utili, leggibili e orientate alle decisioni.",
+        aboutCard1Title: "Chi Sono",
+        aboutCard1Text: "Sono un Data Analyst focalizzato nel trasformare dataset complessi in insight chiari e utili. Mi piace lavorare lungo tutto il workflow analitico, dalla pulizia e dall’esplorazione fino al monitoraggio KPI, alla reportistica e allo storytelling visivo.",
+        aboutCard2Title: "Come Lavoro",
+        aboutCard2Text: "Il mio approccio è pratico, strutturato e orientato al business. Mi concentro sull’identificare pattern, comprendere la performance e presentare i risultati in un modo che aiuti pubblici diversi a leggere la storia dietro i numeri.",
+
+        valueKicker: "Cosa Porto",
+        valueTitle: "Una combinazione di analisi, visione business e comunicazione",
+        valueSubtitle: "Il valore che voglio portare non è solo esecuzione tecnica, ma anche la capacità di organizzare i dati in qualcosa di significativo, leggibile e rilevante per comprendere la performance.",
+        valueCard1Title: "Mentalità Analitica",
+        valueCard1Text: "Mi piace esplorare dataset, identificare pattern e costruire analisi strutturate che trasformano informazioni grezze in interpretazioni chiare.",
+        valueCard2Title: "Focus sul Business",
+        valueCard2Text: "Cerco insight che spieghino la performance, evidenzino inefficienze e supportino il processo decisionale con una prospettiva pratica di business.",
+        valueCard3Title: "Workflow End-to-End",
+        valueCard3Text: "Mi piace costruire progetti analitici completi che colleghino preparazione, esplorazione, logica KPI, dashboard e presentazione in un unico output coerente.",
+        valueCard4Title: "Comunicazione Chiara",
+        valueCard4Text: "Punto a presentare i dati in un modo comprensibile, focalizzato ed efficace visivamente, così che gli insight siano più facili da assorbire e usare.",
+
+        projectsKicker: "Progetti in Evidenza",
+        projectsTitle: "Progetti in cui l’analisi diventa storytelling di business",
+        projectsSubtitle: "Progetti portfolio selezionati per esplorare comportamento dei clienti, attività finanziarie, performance KPI e reporting visivo orientato alle decisioni.",
+        project1Label: "Progetto Principale",
+        project1Role: "Case Study di Business Intelligence End-to-End",
+        project1Title: "Instacart Analytics Project",
+        project1Text: "Analisi end-to-end di dati transazionali focalizzata su comportamento dei clienti, composizione del carrello, performance dei prodotti e pattern di acquisto. Il progetto collega preparazione dati, analisi esplorativa e dashboard storytelling in un’esperienza di reporting orientata al business.",
+        project1Highlight1Title: "Comportamento Clienti",
+        project1Highlight1Text: "Abitudini di acquisto e pattern di ordine",
+        project1Highlight2Title: "Insight di Prodotto",
+        project1Highlight2Text: "Performance per prodotti e categorie",
+        project1Highlight3Title: "Storytelling Dashboard",
+        project1Highlight3Text: "Reporting interattivo in Power BI",
+        project2Label: "Dashboard Business",
+        project2Role: "Monitoraggio Performance",
+        project2Title: "Financial Transactions Analysis",
+        project2Text: "Progetto analitico focalizzato su trend transazionali, attività clienti, performance finanziaria e monitoraggio operativo tramite dashboard KPI-driven.",
+        projectsSideTitle: "Cosa Rende Forti Questi Progetti",
+        projectsSideText: "Ogni progetto non è costruito solo per mostrare esecuzione tecnica, ma anche per dimostrare come i dati possano essere organizzati in domande di business, logiche KPI, comunicazione visiva e storytelling a supporto delle decisioni.",
+        viewProject: "Vedi Progetto",
+
+        journeyKicker: "Percorso",
+        journeyTitle: "Il mio percorso nei dati e nella business intelligence",
+        journeySubtitle: "Una panoramica sintetica di come sto costruendo il mio profilo attraverso strumenti, progetti e lavoro analitico pratico.",
+        journeyStep1Date: "Base",
+        journeyStep1Title: "Competenze Analitiche Fondamentali",
+        journeyStep1Text: "Ho costruito una base solida in Excel, SQL e Python per gestire data cleaning, query, trasformazione ed analisi esplorativa in modo strutturato.",
+        journeyStep2Date: "Business Intelligence",
+        journeyStep2Title: "Sviluppo Dashboard & Reporting",
+        journeyStep2Text: "Mi sono ampliato verso Power BI e Looker Studio per trasformare l’analisi in dashboard interattive, reporting KPI e storytelling visivo più efficace.",
+        journeyStep3Date: "Progetti Portfolio",
+        journeyStep3Title: "Dal Lavoro Tecnico a Narrazioni di Business",
+        journeyStep3Text: "Ho applicato strumenti e pensiero analitico a progetti end-to-end focalizzati su comportamento clienti, trend finanziari e interpretazione della performance.",
+        journeyStep4Date: "Direzione Attuale",
+        journeyStep4Title: "Crescita come Data Analyst",
+        journeyStep4Text: "Continuo a rafforzare un profilo centrato su analisi, business intelligence, sviluppo dashboard e comunicazione orientata alle decisioni.",
+        journeyStoryTag: "Storytelling di Business",
+        decisionSupport: "Supporto Decisionale",
+
+        skillsKicker: "Competenze",
+        skillsTitle: "Strumenti e punti di forza che uso per trasformare i dati in insight",
+        skillsSubtitle: "Un mix di strumenti tecnici, capacità analitiche e competenze comunicative che definiscono il modo in cui costruisco i progetti e presento i risultati.",
+        skillsCard1Title: "Strumenti",
+        skillsCard1Text: "Strumenti principali usati per lavorare con i dati, costruire dashboard e strutturare progetti portfolio.",
+        skillsCard2Title: "Analisi",
+        skillsCard2Text: "Aree analitiche centrali su cui mi concentro quando lavoro con dataset e domande di business.",
+        skillsCard3Title: "Comunicazione",
+        skillsCard3Text: "Come presento il lavoro analitico affinché i risultati diventino più comprensibili e utili.",
+
+        badgeCleaning: "Pulizia Dati",
+        badgeExploratory: "Analisi Esplorativa",
+        badgeKpi: "Analisi KPI",
+        badgePerformance: "Analisi Performance",
+        badgeBusinessAnalysis: "Analisi Business",
+        badgeTrend: "Identificazione Trend",
+        badgeDashboard: "Design Dashboard",
+        badgeReporting: "Reporting",
+        badgeVisualization: "Visualizzazione Dati",
+        badgeStorytelling: "Data Storytelling",
+        badgeInsightCommunication: "Comunicazione Insight",
+        badgeBusinessReadability: "Lettura Business",
+
+        contactKicker: "Contatti",
+        contactTitle: "Costruiamo valore da dati, insight e chiarezza",
+        contactSubtitle: "Aperto a opportunità in data analysis, business intelligence e ruoli analitici focalizzati su comprensione della performance e supporto decisionale.",
+        contactPanelTitle: "Contattami",
+        contactLead: "Sono interessato a opportunità in cui l’analisi possa supportare decisioni di business, monitoraggio KPI, sviluppo dashboard e una comunicazione data-driven più chiara.",
+        contactText: "Se vuoi esplorare il mio lavoro o contattarmi per collaborazioni, ruoli o progetti portfolio, puoi trovarmi attraverso i canali presenti in questa pagina.",
+        contactNote: "Disponibile per confronti su ruoli Data Analyst, Business Intelligence e opportunità focalizzate sulle dashboard.",
+        contactGithubTitle: "GitHub",
+        contactLinkedinTitle: "LinkedIn",
+        contactEmailTitle: "Email",
+
+        footerText: "© 2026 Edoardo Morgillo — Portfolio Data Analyst"
+      }
+    };
+
+    let currentLang = localStorage.getItem("siteLang") || "en";
+
+    const typingWords = {
+      en: ["raw data", "insights", "data stories", "business value"],
+      it: ["dati grezzi", "insight", "storie di dati", "valore business"]
+    };
+
     const revealElements = document.querySelectorAll(".reveal");
 
     const revealObserver = new IntersectionObserver((entries) => {
@@ -1825,42 +2198,6 @@
     window.addEventListener("scroll", setActiveLink);
     window.addEventListener("load", setActiveLink);
 
-    const typingWords = [
-      "raw data",
-      "insights",
-      "data stories",
-      "business value"
-    ];
-
-    const typingElement = document.querySelector(".typing");
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function typeEffect() {
-      const currentWord = typingWords[wordIndex];
-      typingElement.textContent = currentWord.substring(0, charIndex);
-
-      if (!isDeleting && charIndex < currentWord.length) {
-        charIndex++;
-        setTimeout(typeEffect, 85);
-      } else if (isDeleting && charIndex > 0) {
-        charIndex--;
-        setTimeout(typeEffect, 45);
-      } else {
-        if (!isDeleting) {
-          isDeleting = true;
-          setTimeout(typeEffect, 1200);
-        } else {
-          isDeleting = false;
-          wordIndex = (wordIndex + 1) % typingWords.length;
-          setTimeout(typeEffect, 180);
-        }
-      }
-    }
-
-    typeEffect();
-
     document.addEventListener("mousemove", (e) => {
       document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
       document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
@@ -1873,11 +2210,78 @@
         const rect = card.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
         const y = ((e.clientY - rect.top) / rect.height) * 100;
-
         card.style.setProperty("--spot-x", `${x}%`);
         card.style.setProperty("--spot-y", `${y}%`);
       });
     });
+
+    const typingElement = document.querySelector(".typing");
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingTimeout;
+
+    function typeEffect() {
+      const words = typingWords[currentLang];
+      const currentWord = words[wordIndex];
+      typingElement.textContent = currentWord.substring(0, charIndex);
+
+      if (!isDeleting && charIndex < currentWord.length) {
+        charIndex++;
+        typingTimeout = setTimeout(typeEffect, 85);
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        typingTimeout = setTimeout(typeEffect, 45);
+      } else {
+        if (!isDeleting) {
+          isDeleting = true;
+          typingTimeout = setTimeout(typeEffect, 1200);
+        } else {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          typingTimeout = setTimeout(typeEffect, 180);
+        }
+      }
+    }
+
+    function restartTyping() {
+      clearTimeout(typingTimeout);
+      wordIndex = 0;
+      charIndex = 0;
+      isDeleting = false;
+      typingElement.textContent = "";
+      typeEffect();
+    }
+
+    function applyTranslations(lang) {
+      const dict = translations[lang];
+
+      document.documentElement.lang = lang;
+      document.title = dict.pageTitle;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (dict[key]) {
+          element.textContent = dict[key];
+        }
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      currentLang = lang;
+      localStorage.setItem("siteLang", lang);
+      restartTyping();
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        applyTranslations(btn.dataset.lang);
+      });
+    });
+
+    applyTranslations(currentLang);
   </script>
 </body>
 </html>
