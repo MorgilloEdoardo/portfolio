@@ -76,9 +76,10 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(4, 5, 10, 0.68);
-      backdrop-filter: blur(16px);
+      background: rgba(4, 5, 10, 0.58);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
     }
 
     .nav-inner {
@@ -89,10 +90,10 @@
     }
 
     .logo {
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 20px;
+      font-weight: 900;
       color: var(--title);
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
     }
 
     .logo span {
@@ -188,21 +189,22 @@
     }
 
     .hero h1 {
-      font-size: clamp(46px, 7vw, 78px);
-      line-height: 1.02;
-      font-weight: 800;
+      font-size: clamp(52px, 8vw, 88px);
+      line-height: 0.96;
+      font-weight: 900;
       color: var(--title);
-      margin-bottom: 16px;
-      letter-spacing: -1.8px;
+      margin-bottom: 20px;
+      letter-spacing: -2.4px;
     }
 
     .hero h1 .typing {
-      background: linear-gradient(135deg, #d8ccff, #a78bfa, #7c3aed);
+      background: linear-gradient(135deg, #ffffff 0%, #d8ccff 30%, #a78bfa 65%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       display: inline-block;
-      min-width: 240px;
+      min-width: 260px;
+      text-shadow: 0 0 24px rgba(124, 58, 237, 0.18);
     }
 
     .hero p {
@@ -222,41 +224,45 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 13px 22px;
-      border-radius: 14px;
-      font-weight: 600;
-      transition: 0.25s ease;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 700;
+      transition: 0.28s ease;
       border: 1px solid transparent;
       cursor: pointer;
+      letter-spacing: 0.2px;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
       color: #ffffff;
-      box-shadow: 0 14px 34px rgba(99, 102, 241, 0.28);
+      box-shadow: 0 18px 40px rgba(99, 102, 241, 0.32);
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 38px rgba(99, 102, 241, 0.34);
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 24px 50px rgba(99, 102, 241, 0.38);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.03);
-      border-color: rgba(255,255,255,0.08);
-      color: #e5e7eb;
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.10);
+      color: #f3f4f6;
+      backdrop-filter: blur(10px);
     }
 
     .btn-secondary:hover {
-      border-color: rgba(124, 58, 237, 0.36);
-      color: var(--title);
-      transform: translateY(-2px);
+      border-color: rgba(124, 58, 237, 0.34);
+      background: rgba(255,255,255,0.06);
+      color: #ffffff;
+      transform: translateY(-3px);
     }
 
     .hero-card,
     .glass-card,
     .project-card,
-    .contact-panel {
+    .contact-panel,
+    .stats-item {
       background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -329,6 +335,10 @@
       z-index: 1;
     }
 
+    #stats {
+      padding-top: 10px;
+    }
+
     .section-head {
       margin-bottom: 34px;
     }
@@ -352,7 +362,9 @@
 
     .about-grid,
     .projects-grid,
-    .skills-grid {
+    .skills-grid,
+    .stats-strip,
+    .projects-grid-premium {
       display: grid;
       gap: 22px;
     }
@@ -365,8 +377,38 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .projects-grid-premium {
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 24px;
+      align-items: start;
+    }
+
     .skills-grid {
       grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stats-strip {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: -10px;
+    }
+
+    .stats-item {
+      padding: 26px 22px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stats-item h3 {
+      font-size: 34px;
+      line-height: 1;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .stats-item p {
+      color: var(--text-soft);
+      font-size: 14px;
     }
 
     .glass-card {
@@ -388,7 +430,8 @@
 
     .glass-card:hover,
     .project-card:hover,
-    .contact-panel:hover {
+    .contact-panel:hover,
+    .stats-item:hover {
       transform: translateY(-5px);
       border-color: rgba(124, 58, 237, 0.22);
     }
@@ -445,6 +488,10 @@
       background: #0c1018;
     }
 
+    .project-card-featured .project-image {
+      height: 310px;
+    }
+
     .project-image.real-image img {
       width: 100%;
       height: 100%;
@@ -472,6 +519,29 @@
       padding: 24px;
       position: relative;
       z-index: 2;
+    }
+
+    .project-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ddd6fe;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(124, 58, 237, 0.12);
+    }
+
+    .project-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #a78bfa;
+      box-shadow: 0 0 14px rgba(167, 139, 250, 0.8);
     }
 
     .badges,
@@ -581,7 +651,9 @@
       .hero-grid,
       .about-grid,
       .projects-grid,
-      .skills-grid {
+      .skills-grid,
+      .stats-strip,
+      .projects-grid-premium {
         grid-template-columns: 1fr;
       }
     }
@@ -615,7 +687,8 @@
         letter-spacing: -1px;
       }
 
-      .project-image {
+      .project-image,
+      .project-card-featured .project-image {
         height: 220px;
       }
     }
@@ -640,15 +713,15 @@
   <section class="hero" id="home">
     <div class="container hero-grid">
       <div class="reveal">
-        <div class="eyebrow">Data Analyst Portfolio</div>
-        <h1>I am <span class="typing"></span></h1>
+        <div class="eyebrow">Data Analyst Portfolio • Business Intelligence • Data Storytelling</div>
+        <h1>I turn <span class="typing"></span><br> into business clarity.</h1>
         <p>
-          Data Analyst focused on transforming raw data into actionable insights through analysis,
-          business intelligence, KPI monitoring and clear data storytelling.
+          I build analytical projects that transform raw data into clear insights through data cleaning,
+          KPI analysis, dashboard design and business-focused storytelling.
         </p>
         <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          <a href="#projects" class="btn btn-primary">Explore Projects</a>
+          <a href="#contact" class="btn btn-secondary">Let’s Connect</a>
         </div>
       </div>
 
@@ -660,18 +733,42 @@
         </div>
 
         <div class="stat-box">
-          <h4>Main Focus</h4>
-          <p>Data analysis, business intelligence and KPI-driven insight generation.</p>
+          <h4>Primary Focus</h4>
+          <p>Business Intelligence, dashboarding and KPI-driven analysis.</p>
         </div>
 
         <div class="stat-box">
-          <h4>Core Stack</h4>
-          <p>Excel, SQL, Python, Power BI, Looker Studio and GitHub.</p>
+          <h4>Projects Built</h4>
+          <p>Instacart Analytics • Financial Transactions • SQL Portfolio Projects</p>
         </div>
 
         <div class="stat-box">
-          <h4>Approach</h4>
-          <p>Structured analysis, business readability and clear communication of results.</p>
+          <h4>Toolset</h4>
+          <p>Excel, SQL, Python, Power BI, Looker Studio, GitHub</p>
+        </div>
+
+        <div class="stat-box">
+          <h4>Working Style</h4>
+          <p>Structured, business-oriented and focused on clear visual communication.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats">
+    <div class="container">
+      <div class="stats-strip reveal">
+        <div class="stats-item">
+          <h3>2+</h3>
+          <p>End-to-End BI Projects</p>
+        </div>
+        <div class="stats-item">
+          <h3>6</h3>
+          <p>Main Tools in Workflow</p>
+        </div>
+        <div class="stats-item">
+          <h3>100%</h3>
+          <p>Business-Focused Approach</p>
         </div>
       </div>
     </div>
@@ -759,17 +856,18 @@
         </p>
       </div>
 
-      <div class="projects-grid">
-        <div class="project-card reveal">
+      <div class="projects-grid-premium">
+        <div class="project-card project-card-featured reveal">
           <div class="project-image real-image">
             <img src="https://raw.githubusercontent.com/MorgilloEdoardo/instacart-business-intelligence/main/images/01_executive_overview.png" alt="Instacart Dashboard">
           </div>
           <div class="project-content">
+            <div class="project-label">Featured Project</div>
             <h3>Instacart Analytics Project</h3>
             <p>
-              End-to-end analysis of transactional data focused on customer behavior, product performance,
-              basket composition and purchasing patterns. The project combines data preparation,
-              exploratory analysis and interactive reporting to highlight business-relevant insights.
+              End-to-end analytics project focused on customer behavior, basket composition,
+              product performance and purchasing patterns. Built with a full workflow including
+              data preparation, exploration and interactive dashboard reporting.
             </p>
 
             <div class="badges">
@@ -790,9 +888,8 @@
           <div class="project-content">
             <h3>Financial Transactions Analysis</h3>
             <p>
-              Analytical project focused on transaction trends, customer activity, product usage
-              and financial performance. Built to identify operational patterns, monitor key metrics
-              and support a clearer understanding of business performance.
+              Analytical dashboard focused on transaction flows, customer activity,
+              product usage and financial performance to support monitoring and decision-making.
             </p>
 
             <div class="badges">
@@ -933,7 +1030,7 @@
     window.addEventListener('scroll', setActiveLink);
     window.addEventListener('load', setActiveLink);
 
-    const typingWords = ["Edoardo Morgillo", "a Data Analyst", "a Business Analyst"];
+    const typingWords = ["raw data", "insights", "data stories", "business value"];
     const typingElement = document.querySelector(".typing");
 
     let wordIndex = 0;
