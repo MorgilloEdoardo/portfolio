@@ -1,767 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edoardo Morgillo | Data Analyst</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --bg: #030407;
-      --bg-soft: #070a11;
-      --surface: rgba(255, 255, 255, 0.04);
-      --border: rgba(255, 255, 255, 0.08);
-      --text: #f5f7fb;
-      --text-soft: #9aa3b2;
-      --title: #ffffff;
-      --accent: #7c3aed;
-      --accent-hover: #a78bfa;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-    }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(124, 58, 237, 0.10), transparent 24%),
-        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.07), transparent 22%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: min(1120px, 90%);
-      margin: 0 auto;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(3, 4, 7, 0.72);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 0;
-    }
-
-    .logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--title);
-      letter-spacing: 0.4px;
-    }
-
-    .logo span {
-      color: var(--accent-hover);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #c7cfdb;
-      font-size: 15px;
-      transition: 0.25s;
-      position: relative;
-      padding-bottom: 4px;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #7c3aed, #6366f1);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s ease;
-      border-radius: 999px;
-    }
-
-    .nav-links a:hover {
-      color: var(--title);
-    }
-
-    .nav-links a.active {
-      color: var(--title);
-    }
-
-    .nav-links a.active::after {
-      transform: scaleX(1);
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 90px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 9px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      color: #d7d0ff;
-      background: rgba(255, 255, 255, 0.03);
-      font-size: 13px;
-      margin-bottom: 22px;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 74px);
-      line-height: 1.04;
-      font-weight: 800;
-      color: var(--title);
-      margin-bottom: 18px;
-    }
-
-    .hero h1 span {
-      color: var(--accent-hover);
-    }
-
-    .hero p {
-      max-width: 650px;
-      font-size: 18px;
-      color: var(--text-soft);
-      margin-bottom: 28px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 13px 22px;
-      border-radius: 14px;
-      font-weight: 600;
-      transition: 0.25s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #7c3aed, #6366f1);
-      color: #ffffff;
-      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.24);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(99, 102, 241, 0.32);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.03);
-      border-color: rgba(255, 255, 255, 0.08);
-      color: #e5e7eb;
-    }
-
-    .btn-secondary:hover {
-      border-color: rgba(124, 58, 237, 0.35);
-      color: var(--title);
-    }
-
-    .hero-card,
-    .glass-card,
-    .project-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      padding: 26px;
-    }
-
-    .mock-top {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .mock-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #394150;
-    }
-
-    .stat-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
-
-    .stat-box:last-child {
-      margin-bottom: 0;
-    }
-
-    .stat-box h4 {
-      color: #ddd6fe;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .stat-box p {
-      color: #e7e9ef;
-      font-size: 15px;
-      margin: 0;
-    }
-
-    section {
-      padding: 110px 0 20px;
-      scroll-margin-top: 100px;
-    }
-
-    .section-title {
-      font-size: 34px;
-      color: var(--title);
-      margin-bottom: 10px;
-    }
-
-    .section-title span {
-      color: var(--accent-hover);
-    }
-
-    .section-subtitle {
-      color: var(--text-soft);
-      max-width: 760px;
-      margin-bottom: 34px;
-    }
-
-    .about-grid,
-    .projects-grid,
-    .skills-grid {
-      display: grid;
-      gap: 22px;
-    }
-
-    .about-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .skills-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .glass-card {
-      padding: 28px;
-      transition: 0.25s;
-    }
-
-    .glass-card:hover,
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(124, 58, 237, 0.20);
-    }
-
-    .glass-card h3,
-    .project-content h3,
-    .skills-card h3,
-    .contact-card h3 {
-      margin-bottom: 12px;
-      font-size: 22px;
-      color: var(--title);
-    }
-
-    .glass-card p,
-    .project-content p,
-    .contact-card p {
-      color: var(--text-soft);
-    }
-
-    .project-card {
-      overflow: hidden;
-      transition: 0.25s;
-      position: relative;
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      background: linear-gradient(120deg, transparent, rgba(124,58,237,0.12), transparent);
-      opacity: 0;
-      transition: 0.3s;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .project-card:hover::before {
-      opacity: 1;
-    }
-
-    .project-image {
-      height: 220px;
-      background:
-        linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(59, 130, 246, 0.10)),
-        #0c1018;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #e9e4ff;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 0.4px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      position: relative;
-      z-index: 0;
-    }
-
-    .project-image.real-image {
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .project-image.real-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
-    }
-
-    .project-card:hover .project-image.real-image img {
-      transform: scale(1.04);
-    }
-
-    .project-content {
-      padding: 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .badges,
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .badges {
-      margin: 18px 0;
-    }
-
-    .badge {
-      font-size: 12px;
-      color: #f3f4f6;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border-radius: 999px;
-      padding: 8px 14px;
-      letter-spacing: 0.2px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
-      transition: 0.2s ease;
-    }
-
-    .badge:hover {
-      border-color: rgba(168, 85, 247, 0.28);
-      background: linear-gradient(180deg, rgba(168, 85, 247, 0.16), rgba(255,255,255,0.03));
-    }
-
-    .contact-links a {
-      display: block;
-      color: #e5e7eb;
-      margin-bottom: 10px;
-      transition: 0.2s;
-    }
-
-    .contact-links a:hover {
-      color: var(--accent-hover);
-    }
-
-    footer {
-      padding: 70px 0 30px;
-      text-align: center;
-      color: #6c7485;
-      font-size: 14px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid,
-      .about-grid,
-      .projects-grid,
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-inner {
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .nav-links {
-        justify-content: center;
-        gap: 16px;
-      }
-
-      .hero {
-        padding-top: 130px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edoardo Morgillo | Data Analyst</title>
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+html {scroll-behavior:smooth;}
+
+:root {
+  --bg:#020204;
+  --bg-soft:#06080f;
+  --text:#f5f7fb;
+  --text-soft:#9aa3b2;
+  --accent:#7c3aed;
+  --accent2:#6366f1;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124,58,237,0.15), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(99,102,241,0.1), transparent 30%),
+    var(--bg);
+  color:var(--text);
+}
+
+/* NAV */
+nav {
+  position:fixed;
+  width:100%;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.5);
+  z-index:1000;
+}
+.nav-inner {
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  max-width:1100px;
+  margin:auto;
+}
+.nav-links a {
+  margin-left:20px;
+  color:#aaa;
+  position:relative;
+}
+.nav-links a.active,
+.nav-links a:hover {color:#fff;}
+
+/* HERO */
+.hero {
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero h1 {
+  font-size:60px;
+}
+
+.typing {
+  color:var(--accent);
+}
+
+.hero p {
+  margin-top:20px;
+  color:var(--text-soft);
+}
+
+.btn {
+  margin-top:30px;
+  padding:12px 24px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:inline-block;
+}
+
+/* SECTIONS */
+section {padding:100px 20px; max-width:1100px; margin:auto;}
+.section-title {font-size:30px;margin-bottom:20px;}
+.section-subtitle {color:var(--text-soft);margin-bottom:40px;}
+
+/* PROJECTS */
+.projects {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+.project {
+  background:#0b0f18;
+  border-radius:20px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.project:hover {
+  transform:translateY(-10px);
+}
+
+.project img {
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.project-content {padding:20px;}
+
+.badge {
+  display:inline-block;
+  margin:5px;
+  padding:6px 10px;
+  background:#111;
+  border-radius:20px;
+  font-size:12px;
+}
+
+/* ANIMATION */
+.reveal {opacity:0;transform:translateY(40px);transition:0.8s;}
+.reveal.show {opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .projects {grid-template-columns:1fr;}
+}
+</style>
 </head>
+
 <body>
 
-  <nav>
-    <div class="container nav-inner">
-      <div class="logo">Edoardo<span>.</span></div>
-      <div class="nav-links">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About Me</a>
-        <a href="#value" class="nav-link">What I Bring</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </div>
+<nav>
+  <div class="nav-inner">
+    <div>Edoardo</div>
+    <div class="nav-links">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="reveal">
-        <div class="eyebrow">Data Analyst Portfolio</div>
-        <h1>Hi, I'm <span>Edoardo Morgillo</span></h1>
-        <p>
-          Data Analyst focused on transforming raw data into actionable insights through analysis,
-          business intelligence, KPI monitoring and clear data storytelling.
-        </p>
-        <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
-        </div>
-      </div>
+<section class="hero" id="home">
+  <div>
+    <h1>I am <span class="typing"></span></h1>
+    <p>Turning data into business insights</p>
+    <a href="#projects" class="btn">View Projects</a>
+  </div>
+</section>
 
-      <div class="hero-card reveal">
-        <div class="mock-top">
-          <div class="mock-dot"></div>
-          <div class="mock-dot"></div>
-          <div class="mock-dot"></div>
-        </div>
+<section id="projects">
+  <h2 class="section-title reveal">Projects</h2>
+  <p class="section-subtitle reveal">My work in data analysis</p>
 
-        <div class="stat-box">
-          <h4>Main Focus</h4>
-          <p>Data analysis, business intelligence and KPI-driven insight generation.</p>
-        </div>
+  <div class="projects">
 
-        <div class="stat-box">
-          <h4>Core Stack</h4>
-          <p>Excel, SQL, Python, Power BI, Looker Studio and GitHub.</p>
-        </div>
-
-        <div class="stat-box">
-          <h4>Approach</h4>
-          <p>Structured analysis, business readability and clear communication of results.</p>
+    <div class="project reveal">
+      <img src="https://raw.githubusercontent.com/MorgilloEdoardo/instacart-business-intelligence/main/images/01_executive_overview.png">
+      <div class="project-content">
+        <h3>Instacart Analytics</h3>
+        <p>Customer behavior and basket analysis</p>
+        <div>
+          <span class="badge">Python</span>
+          <span class="badge">SQL</span>
+          <span class="badge">Power BI</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <section id="about">
-    <div class="container">
-      <div class="reveal">
-        <h2 class="section-title">About <span>Me</span></h2>
-        <p class="section-subtitle">
-          A short introduction about who I am and how I work with data.
-        </p>
-      </div>
-
-      <div class="about-grid">
-        <div class="glass-card reveal">
-          <h3>Who I Am</h3>
-          <p>
-            I am a Data Analyst with a strong interest in turning complex data into clear and useful business insights.
-            I work across the full analytical workflow, from data cleaning and exploration to KPI analysis,
-            reporting and visual communication.
-          </p>
-        </div>
-
-        <div class="glass-card reveal">
-          <h3>How I Work</h3>
-          <p>
-            My approach is practical and business-oriented. I focus on identifying trends,
-            measuring performance and translating data into information that can support better decisions.
-            I value clarity, structure and meaningful analysis over unnecessary complexity.
-          </p>
+    <div class="project reveal">
+      <img src="https://raw.githubusercontent.com/MorgilloEdoardo/financial-transactions-business-intelligence/main/images/01_Executive_Overview.png">
+      <div class="project-content">
+        <h3>Financial Analysis</h3>
+        <p>Transaction insights and performance</p>
+        <div>
+          <span class="badge">Power BI</span>
+          <span class="badge">DAX</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <section id="value">
-    <div class="container">
-      <div class="reveal">
-        <h2 class="section-title">What I <span>Bring</span></h2>
-        <p class="section-subtitle">
-          A combination of analytical thinking, business focus and clear communication.
-        </p>
-      </div>
+  </div>
+</section>
 
-      <div class="about-grid">
-        <div class="glass-card reveal">
-          <h3>Analytical Mindset</h3>
-          <p>
-            I enjoy exploring data, identifying patterns and turning raw information into structured analysis.
-          </p>
-        </div>
+<section id="contact">
+  <h2 class="section-title reveal">Contact</h2>
+  <p class="section-subtitle reveal">Let's connect</p>
 
-        <div class="glass-card reveal">
-          <h3>Business Focus</h3>
-          <p>
-            I look for insights that can help explain performance, highlight issues and support decision-making.
-          </p>
-        </div>
+  <div class="reveal">
+    <p>Email: edoardomorgillo@icloud.com</p>
+    <p>GitHub: MorgilloEdoardo</p>
+  </div>
+</section>
 
-        <div class="glass-card reveal">
-          <h3>Clear Communication</h3>
-          <p>
-            I aim to present results in a way that is understandable, relevant and useful for different audiences.
-          </p>
-        </div>
+<script>
+/* SCROLL ANIMATION */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('show');}
+  });
+});
+reveals.forEach(r=>observer.observe(r));
 
-        <div class="glass-card reveal">
-          <h3>End-to-End Workflow</h3>
-          <p>
-            From data cleaning and exploration to reporting and visualization, I like building complete analytical projects.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+/* NAV ACTIVE */
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
 
-  <section id="projects">
-    <div class="container">
-      <div class="reveal">
-        <h2 class="section-title">Featured <span>Projects</span></h2>
-        <p class="section-subtitle">
-          Selected projects where I applied data analysis, business thinking and visual communication
-          to explore performance, behavior and decision-making patterns.
-        </p>
-      </div>
-
-      <div class="projects-grid">
-        <div class="project-card reveal">
-          <div class="project-image real-image">
-            <img src="https://raw.githubusercontent.com/MorgilloEdoardo/instacart-business-intelligence/main/images/01_executive_overview.png" alt="Instacart Dashboard">
-          </div>
-          <div class="project-content">
-            <h3>Instacart Analytics Project</h3>
-            <p>
-              End-to-end analysis of transactional data focused on customer behavior, product performance,
-              basket composition and purchasing patterns. The project combines data preparation,
-              exploratory analysis and interactive reporting to highlight business-relevant insights.
-            </p>
-
-            <div class="badges">
-              <span class="badge">Python</span>
-              <span class="badge">SQL</span>
-              <span class="badge">Power BI</span>
-              <span class="badge">Excel</span>
-            </div>
-
-            <a class="btn btn-primary" href="https://github.com/MorgilloEdoardo/instacart-business-intelligence" target="_blank">View Project</a>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-image real-image">
-            <img src="https://raw.githubusercontent.com/MorgilloEdoardo/financial-transactions-business-intelligence/main/images/01_Executive_Overview.png" alt="Financial Dashboard">
-          </div>
-          <div class="project-content">
-            <h3>Financial Transactions Analysis</h3>
-            <p>
-              Analytical project focused on transaction trends, customer activity, product usage
-              and financial performance. Built to identify operational patterns, monitor key metrics
-              and support a clearer understanding of business performance.
-            </p>
-
-            <div class="badges">
-              <span class="badge">Power BI</span>
-              <span class="badge">DAX</span>
-              <span class="badge">Excel</span>
-            </div>
-
-            <a class="btn btn-primary" href="https://github.com/MorgilloEdoardo/financial-transactions-business-intelligence" target="_blank">View Project</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <div class="reveal">
-        <h2 class="section-title">My <span>Skills</span></h2>
-        <p class="section-subtitle">
-          Main tools and analytical strengths I use to work with data, extract insights
-          and communicate results effectively.
-        </p>
-      </div>
-
-      <div class="skills-grid">
-        <div class="glass-card skills-card reveal">
-          <h3>Tools</h3>
-          <div class="skills-list">
-            <span class="badge">Excel</span>
-            <span class="badge">SQL</span>
-            <span class="badge">Python</span>
-            <span class="badge">Power BI</span>
-            <span class="badge">Looker Studio</span>
-            <span class="badge">GitHub</span>
-          </div>
-        </div>
-
-        <div class="glass-card skills-card reveal">
-          <h3>Analysis</h3>
-          <div class="skills-list">
-            <span class="badge">Data Cleaning</span>
-            <span class="badge">Exploratory Analysis</span>
-            <span class="badge">KPI Analysis</span>
-            <span class="badge">Performance Analysis</span>
-            <span class="badge">Business Analysis</span>
-          </div>
-        </div>
-
-        <div class="glass-card skills-card reveal">
-          <h3>Communication</h3>
-          <div class="skills-list">
-            <span class="badge">Data Visualization</span>
-            <span class="badge">Reporting</span>
-            <span class="badge">Data Storytelling</span>
-            <span class="badge">Insight Communication</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="reveal">
-        <h2 class="section-title">Get in <span>Touch</span></h2>
-        <p class="section-subtitle">
-          Open to opportunities in data analysis, business intelligence and roles focused on turning data into business value.
-        </p>
-      </div>
-
-      <div class="glass-card contact-card reveal">
-        <h3>Contact</h3>
-        <p>You can find me here:</p>
-        <div class="contact-links">
-          <a href="https://github.com/MorgilloEdoardo" target="_blank">GitHub — MorgilloEdoardo</a>
-          <a href="https://www.linkedin.com/in/edoardo-morgillo-b5bb6a33b/" target="_blank">LinkedIn — Edoardo Morgillo</a>
-          <a href="mailto:edoardomorgillo@icloud.com">Email — edoardomorgillo@icloud.com</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Edoardo Morgillo — Data Analyst Portfolio
-  </footer>
-
-  <script>
-    const revealElements = document.querySelectorAll('.reveal');
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, {
-      threshold: 0.15
-    });
-
-    revealElements.forEach((el) => revealObserver.observe(el));
-
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    function setActiveLink() {
-      let currentSection = 'home';
-
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 140;
-        const sectionHeight = section.offsetHeight;
-
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + currentSection) {
-          link.classList.add('active');
-        }
-      });
+window.addEventListener('scroll',()=>{
+  let current="";
+  sections.forEach(sec=>{
+    const top=sec.offsetTop-150;
+    if(scrollY>=top) current=sec.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')=="#"+current){
+      a.classList.add('active');
     }
+  });
+});
 
-    window.addEventListener('scroll', setActiveLink);
-    window.addEventListener('load', setActiveLink);
-  </script>
+/* TYPING EFFECT */
+const text = ["Data Analyst", "Business Analyst"];
+let i=0, j=0, currentText="", isDeleting=false;
+
+function type(){
+  currentText = text[i];
+  
+  if(isDeleting){
+    document.querySelector(".typing").textContent = currentText.substring(0,j--);
+  } else {
+    document.querySelector(".typing").textContent = currentText.substring(0,j++);
+  }
+
+  if(!isDeleting && j === currentText.length){
+    isDeleting=true;
+    setTimeout(type,1000);
+    return;
+  }
+
+  if(isDeleting && j===0){
+    isDeleting=false;
+    i = (i+1)%text.length;
+  }
+
+  setTimeout(type, isDeleting ? 50 : 100);
+}
+type();
+</script>
 
 </body>
 </html>
