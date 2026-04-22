@@ -1375,14 +1375,13 @@
               <span class="bar bar-6"></span>
             </div>
             <div class="axis-labels">
-              <span data-i
-                18n="axis1">Data Prep</span>
-              <span data-i18n="axis2">Analysis</span>
-              <span data-i18n="axis3">KPI</span>
-              <span data-i18n="axis4">Storytelling</span>
-              <span data-i18n="axis5">BI</span>
-              <span data-i18n="axis6">Reporting</span>
-            </div>
+  <span data-i18n="axis1">Data Prep</span>
+  <span data-i18n="axis2">Analysis</span>
+  <span data-i18n="axis3">KPI</span>
+  <span data-i18n="axis4">Storytelling</span>
+  <span data-i18n="axis5">BI</span>
+  <span data-i18n="axis6">Reporting</span>
+</div>
           </div>
         </div>
       </div>
@@ -1419,14 +1418,14 @@
           <p data-i18n="stats3Text">Every project is designed to explain performance and support better decisions.</p>
         </div>
 
-        <div class="stats-item spotlight">
-          <div class="stats-top">
-            <div class="stats-badge">🧠</div>
-          </div>
-          <h3 data-i18n="stats4Number">Full</h3>
-          <h4 data-i18n="stats4Title">Analytical Workflow</h4>
-          <p data-i18n="stats4Text">From raw data to structured insight, visual communication and actionable reporting.</p>
-        </div>
+<div class="stats-item spotlight">
+  <div class="stats-top">
+    <div class="stats-badge">📊</div>
+  </div>
+  <h3 data-i18n="stats1Number">4+</h3>
+  <h4 data-i18n="stats1Title">End-to-End BI Projects</h4>
+  <p data-i18n="stats1Text">Portfolio work built around analysis, dashboarding and business interpretation.</p>
+</div>
       </div>
     </div>
   </section>
@@ -1509,7 +1508,7 @@
     </div>
   </section>
 
-<section id="projects" class="section-shell">
+ <section id="projects" class="section-shell">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-kicker" data-i18n="projectsKicker">Featured Work</div>
@@ -1726,7 +1725,7 @@
             <p data-i18n="journeyStep3Text">
               Applied tools and analytical thinking to end-to-end projects focused on customer behavior, financial trends and performance interpretation.
             </p>
-          <div class="timeline-meta">
+      <div class="timeline-meta">
   <span>Instacart Analytics</span>
   <span>Financial Transactions</span>
   <span>Customer Churn Analysis</span>
@@ -2148,9 +2147,9 @@
         project3Title: "Movie Analytics Dashboard",
         project3Text: "Progetto analitico orientato al business, progettato per esplorare distribuzione dei ricavi, performance dei generi, efficienza del budget e impatto di cast e crew tramite Python, SQL e Power BI.",
         project4Label: "Analisi Churn",
-         project4Role: "Impatto Business & Strategia di Retention",
+        project4Role: "Impatto Business & Strategia di Retention",
         project4Title: "Customer Churn Business Analysis",
-        project4Text: "Progetto end-to-end di Business Intelligence focalizzato sulla comprensione del comportamento di churn, sull’identificazione dei principali driver di abbandono e sulla misurazione dell’impatto economico della perdita clienti attraverso una dashboard Power BI multi-pagina."
+        project4Text: "Progetto end-to-end di Business Intelligence focalizzato sulla comprensione del comportamento di churn, sull’identificazione dei principali driver di abbandono e sulla misurazione dell’impatto economico della perdita clienti attraverso una dashboard Power BI multi-pagina.",
         projectsSideTitle: "Cosa Rende Forti Questi Progetti",
         projectsSideText: "Ogni progetto non è costruito solo per mostrare esecuzione tecnica, ma anche per dimostrare come pulizia dati, preparazione, logiche KPI e comunicazione visiva lavorino insieme per supportare comprensione del business e decisioni migliori.",
         viewProject: "Vedi Progetto",
@@ -2261,21 +2260,29 @@
     window.addEventListener("load", setActiveLink);
 
     document.addEventListener("mousemove", (e) => {
-      document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
-      document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
+      document.documentElement.style.setProperty("--mouse-x", ${e.clientX}px);
+      document.documentElement.style.setProperty("--mouse-y", ${e.clientY}px);
     });
 
     const spotlightCards = document.querySelectorAll(".spotlight");
 
     spotlightCards.forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty("--spot-x", `${x}%`);
-        card.style.setProperty("--spot-y", `${y}%`);
-      });
-    });
+document.addEventListener("mousemove", (e) => {
+  document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
+  document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
+});
+
+const spotlightCards = document.querySelectorAll(".spotlight");
+
+spotlightCards.forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty("--spot-x", `${x}%`);
+    card.style.setProperty("--spot-y", `${y}%`);
+  });
+});
 
     const typingElement = document.querySelector(".typing");
     let wordIndex = 0;
@@ -2349,5 +2356,4 @@
 </html>
 
  
-                
                 
