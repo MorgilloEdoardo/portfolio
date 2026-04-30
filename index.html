@@ -570,8 +570,8 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(4, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             align-items: stretch;
             padding-bottom: 16px;
         }
@@ -595,7 +595,13 @@
             border-color: var(--accent);
         }
 
-        .project-card-featured,
+        .project-card-featured {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            min-height: 520px;
+        }
+
         .project-card-side {
             display: flex;
             flex-direction: column;
@@ -1038,6 +1044,14 @@
                         <div class="skill-bar-fill" style="--fill-width: 90%"></div>
                     </div>
                 </div>
+                <div class="skill">
+                    <i class="fas fa-chart-pie"></i>
+                    <h4>Data Storytelling</h4>
+                    <p>Raccontare storie attraverso i dati, visualizzazioni efficaci e comunicazione insights</p>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="--fill-width: 88%"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1342,3 +1356,4 @@
 </body>
 
 </html>
+
